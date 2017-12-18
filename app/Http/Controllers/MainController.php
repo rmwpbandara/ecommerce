@@ -75,6 +75,7 @@ class MainController extends Controller
     public function postProduct(Request $request){
 
         $authId = Auth::id();   //get auth user id
+
         $ProductId= DB::table('Stocks')->find(DB::table('Stocks')->max('id'))->id+1; //load database last id and + 1
 
         //request variables and save all
@@ -122,6 +123,8 @@ class MainController extends Controller
                 $tagging->save();
             }
         endif;
+
+
     }
 
 

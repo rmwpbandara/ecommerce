@@ -50,41 +50,41 @@ class CreateStocksTable extends Migration
 
         ]);
 
-        DB::table('stocks')->insert([
-            'name' => 'product02',
-            'description' => 'despt02',
-            'quantity' => '10',
-            'previousPrice' => '200',
-            'price' => '150',
-            'type_id' => '2',
-        ]);
-
-        DB::table('stocks')->insert([
-            'name' => 'product03',
-            'description' => 'despt03',
-            'quantity' => '0120',
-            'previousPrice' => '204',
-            'price' => '159',
-            'type_id' => '3',
-        ]);
-
-        DB::table('stocks')->insert([
-            'name' => 'product04',
-            'description' => 'despt04',
-            'quantity' => '141',
-            'previousPrice' => '28',
-            'price' => '14',
-            'type_id' => '4',
-        ]);
-
-        DB::table('stocks')->insert([
-            'name' => 'product05',
-            'description' => 'despt05',
-            'quantity' => '0145',
-            'previousPrice' => '2045',
-            'price' => '157',
-            'type_id' => '5',
-        ]);
+//        DB::table('stocks')->insert([
+//            'name' => 'product02',
+//            'description' => 'despt02',
+//            'quantity' => '10',
+//            'previousPrice' => '200',
+//            'price' => '150',
+//            'type_id' => '2',
+//        ]);
+//
+//        DB::table('stocks')->insert([
+//            'name' => 'product03',
+//            'description' => 'despt03',
+//            'quantity' => '0120',
+//            'previousPrice' => '204',
+//            'price' => '159',
+//            'type_id' => '3',
+//        ]);
+//
+//        DB::table('stocks')->insert([
+//            'name' => 'product04',
+//            'description' => 'despt04',
+//            'quantity' => '141',
+//            'previousPrice' => '28',
+//            'price' => '14',
+//            'type_id' => '4',
+//        ]);
+//
+//        DB::table('stocks')->insert([
+//            'name' => 'product05',
+//            'description' => 'despt05',
+//            'quantity' => '0145',
+//            'previousPrice' => '2045',
+//            'price' => '157',
+//            'type_id' => '5',
+//        ]);
     }
 
     /**

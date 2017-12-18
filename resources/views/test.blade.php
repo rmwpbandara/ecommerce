@@ -144,3 +144,63 @@ margin: 10px auto;
 width: 160px;
 font-size: 18px;
 }
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+{{--<div class="col-sm-4 element-outline">--}}
+{{--<div class="product">--}}
+{{--<div class="image">--}}
+{{--@yield('images')--}}
+{{--</div>--}}
+{{--<div class="product-type">--}}
+{{--@yield('product_type')--}}
+{{--</div>--}}
+{{--<div class="product-name">--}}
+{{--@yield('product_name')--}}
+{{--</div>--}}
+{{--<div class="product-price">--}}
+{{--@yield('product_price')--}}
+{{--</div>--}}
+{{--<div class="cart-btn">--}}
+{{--@yield('cart')--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+
+
+
+
+{{--@foreach($stocks as $stock)--}}
+{{--@extends('layouts.element')--}}
+
+{{--@section('images')--}}
+{{--<img class="image-img" src="images/{{$stock->user_id}}{{$stock->id}}frontImage.jpg">--}}
+{{--@endsection--}}
+
+{{--@section('product_type')--}}
+{{--@foreach($types as $type)--}}
+{{--@if($stock->type_id == $type->id)--}}
+{{--<span>{{ $type->type }}</span>--}}
+{{--@endif--}}
+{{--@endforeach--}}
+{{--@endsection--}}
+
+{{--@section('product_name')--}}
+{{--<span>{{ $stock->name}}</span>--}}
+{{--@endsection--}}
+
+{{--@section('product_price')--}}
+{{--<span>Rs.{{ $stock->price}}/-</span>--}}
+{{--@endsection--}}
+
+{{--@section('cart')--}}
+{{--<span>add to cart</span>--}}
+{{--@endsection--}}
+
+{{--@endforeach--}}
