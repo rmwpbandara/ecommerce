@@ -1,0 +1,215 @@
+/*main styles------------------------------------------------------------------------*/
+
+.sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    overflow-x: hidden;
+    transition: 0.2s;
+    margin-top: 50px;
+    width: 16%;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding-top: 16px;
+    margin-left: 16%;
+}
+
+.container{
+    width: 100%;
+}
+
+#icon{
+    font-size:20px;
+    cursor:pointer;
+    float: left;
+    margin-right: 30px;
+    margin-top: 12px;
+}
+
+.content-leftnav{
+    text-align: center;
+}
+
+.main-menu{
+    margin-top: 20px;
+}
+
+.menu{
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.main-menu a{
+    font-family: "Segoe UI",Arial,sans-serif;
+    text-decoration: none;
+    display: block;
+    padding: 3px 1px 4px 16px;
+    background-color: transparent;
+    max-height: 40px;
+    color: black;
+    font-size: 100%;
+
+}
+.main-menu a.active{
+    background-color: darkgreen;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.main-menu a:hover{
+    background-color: #374d3b;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.content-leftnav{
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.menu-section{
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.list-name{
+    margin-left: 20px;
+}
+
+#slider-range{
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 90%;
+    margin-left: 15px;
+}
+
+#price-range{
+    margin-left: 10px ;
+    margin-bottom: 10px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.filter-types p{
+    text-align: center;
+    text-decoration: underline;
+    font-size: 15px;
+    display: block;
+}
+
+.dropdown{
+    text-align: center;
+}
+
+.search-input {
+    height: 100%;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+    margin-left: 1px;
+}
+
+
+/*tagging------------------------------------------------------------------------*/
+
+#tags span.tag{
+    cursor:pointer;
+    float:left;
+    color:#555;
+    background-color:#e7e9e7cc;
+    padding:1px 30px 1px 3px;
+    border-radius:4px;
+    border:1px solid;
+    margin:4px;
+}
+#tags span.tag:hover{
+    opacity:0.7;
+}
+#tags span.tag:after{
+    position:absolute;
+    content:"X";
+    border:1px solid;
+    border-radius:10px;
+    padding:0 4px;
+    margin:3px 0 10px 7px;
+    font-size:10px;
+}
+#tags input{
+    border-radius: 6px;
+    margin-left: 2px;
+}
+
+/*search menus------------------------------------------------------------------------*/
+
+.search-button a{
+    font-family: "Segoe UI",Arial,sans-serif;
+    text-decoration: none;
+    display: block;
+    padding: 3px 1px 4px 16px;
+    background-color: #e7e9e7cc;
+    max-height: 40px;
+    color: black;
+    font-size: 100%;
+    margin-top: 10px;
+
+}
+
+.search-button a:hover{
+    background-color: #374d3b;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/*sidebar types align------------------------------------------------------------------------*/
+
+.sidebar-types{
+    margin-left: 15px;
+}
+
+/*element of product------------------------------------------------------------------------*/
+
+.element-outline{
+    margin-top: 40px;
+}
+
+.element-outline .product{
+    border: 1px solid;
+    text-align: center;
+}
+
+.element-outline .product .image{
+    width: 100%;
+    height: 150px;
+    border: 1px solid;
+    text-align: center;
+}
+
+.element-outline .product .product-type{
+    background-color: ghostwhite;
+}
+
+.element-outline .product .product-name{
+    background-color: #008800;
+}
+
+.element-outline .product .product-price{
+    background-color: ghostwhite;
+}
+
+.image-img{
+    max-width: 80%;
+    max-height: 80%;
+    vertical-align: middle;
+}
+
+.cart-btn{
+    background-color: #008800;
+    text-align: center;
+}
