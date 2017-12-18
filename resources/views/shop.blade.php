@@ -1,25 +1,37 @@
-@foreach($stocks as $stock)
-    <div class="col-sm-4 element-outline">
-        <div class="product">
-            <div class="image">
-                image
-            </div>
-            <div class="product-type">
-                @foreach($types as $type)
-                    @if($stock->type_id == $type->id)
-                        <span>{{ $type->type }}</span>
-                    @endif
-                @endforeach
-            </div>
-            <div class="product-name">
-                <span>{{ $stock->name}}</span>
-            </div>
-            <div class="product-price">
-                <span>Rs.{{ $stock->price}}/-</span>
-            </div>
-            <div class="cart-btn" style="background-color: #008800; text-align: center;">
-                <span>add to cart</span>
+@extends('layouts.app')
+
+@section('page_title')
+    Shop
+@endsection
+
+@section('content')
+    <script type="text/javascript">
+        $('.a-shop').addClass('active');
+    </script>
+
+    @foreach($stocks as $stock)
+        <div class="col-sm-4 element-outline">
+            <div class="product">
+                <div class="image">
+                    <img class="image-img" src="images/{{$stock->user_id}}{{$stock->id}}frontImage.jpg">
+                </div>
+                <div class="product-type">
+                    @foreach($types as $type)
+                        @if($stock->type_id == $type->id)
+                            <span>{{ $type->type }}</span>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="product-name">
+                    <span>{{ $stock->name}}</span>
+                </div>
+                <div class="product-price">
+                    <span>Rs.{{ $stock->price}}/-</span>
+                </div>
+                <div class="cart-btn">
+                    <span>add to cart</span>
+                </div>
             </div>
         </div>
-    </div>
-@endforeach
+    @endforeach
+@endsection

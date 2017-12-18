@@ -1,4 +1,15 @@
-<div class="main-content" style="margin-top: 5%;">
+@extends('layouts.app')
+
+@section('page_title')
+    Sell Products
+@endsection
+
+@section('content')
+    <script type="text/javascript">
+        $('.a-sell').addClass('active');
+    </script>
+
+    <div class="main-content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -137,3 +148,5 @@
         </div>
     </div>
 </div>
+
+    @endsection

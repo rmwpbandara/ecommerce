@@ -68,31 +68,31 @@ $(function () {
 });
 
 //default loading home content
-$.get(
-    "welcome",
-    function (data) {
-        $("#content").html(data);
-    }
-);
+//$.get(
+//    "welcome",
+//    function (data) {
+//        $("#content").html(data);
+//    }
+//);
 
 //loading content after onclick
-$(document).ready(function() {
-    $('.links').on('click', function(){
-        var id = $(this).attr('id');
-
-        //remove active class
-        $('a').removeClass('active');
-        $(this).addClass('active');
-
-        //load content page
-        $.get(
-            id,
-            function (data) {
-                $("#content").html(data);
-            }
-        );
-    });
-});
+//$(document).ready(function() {
+//    $('.links').on('click', function(){
+//        var id = $(this).attr('id');
+//
+//        //remove active class
+//        $('a').removeClass('active');
+//        $(this).addClass('active');
+//
+//        //load content page
+//        $.get(
+//            id,
+//            function (data) {
+//                $("#content").html(data);
+//            }
+//        );
+//    });
+//});
 
 
 //post products data

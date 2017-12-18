@@ -14,56 +14,66 @@ use Illuminate\Support\Facades\File;
 
 class MainController extends Controller
 {
-    public function getMain(){
-
+    public  function getHome(){
         $tags = Tag::all();
         $types = Type::all();
-        return view('layouts.app')->with(['tags'=>$tags,'types'=>$types]);
+        //get recent records of products
+        $recentStocks = Stock::orderBy('id', 'desc')->take(3)->get();
+        $lowerstPriceStocks = Stock::orderBy('price', 'asc')->take(3)->get();
 
+        return view('home')->with(['tags'=>$tags,'types'=>$types, 'recentStocks'=>$recentStocks,'lowerstPriceStocks'=>$lowerstPriceStocks]);
     }
 
-    public function getWelcome(){
-
-        $stocks = Stock::all();
+    public function getLogin(){
+        $tags = Tag::all();
         $types = Type::all();
+        return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
+    }
 
-        return view('welcome')->with(['stocks'=>$stocks, 'types'=>$types]);
+    public function getRegister(){
+        $tags = Tag::all();
+        $types = Type::all();
+        return view('auth.register')->with(['tags'=>$tags,'types'=>$types]);
     }
 
     public function getShop(){
-
+        $tags = Tag::all();
         $stocks = Stock::all();
         $types = Type::all();
 
-        return view('shop')->with(['stocks'=>$stocks, 'types'=>$types]);
+        return view('shop')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types]);
     }
 
     public function getSubscriptions(){
-
+        $tags = Tag::all();
+        $stocks = Stock::all();
+        $types = Type::all();
 
         if (Auth::check()) {
-            $stocks = Stock::all();
-            $types = Type::all();
 
-            return view('subscriptions')->with(['stocks'=>$stocks, 'types'=>$types]);
+
+            return view('subscriptions')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types]);
         }
-        return view('auth.login');
+        return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
     }
 
     public function getMyOrders(){
+        $tags = Tag::all();
+        $stocks = Stock::all();
+        $types = Type::all();
         if (Auth::check()) {
-            return view('my_orders');
+            return view('my_orders')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types]);
         }
-        return view('auth.login');
+        return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
     }
 
     public function getSell(){
+        $tags = Tag::all();
+        $types = Type::all();
         if (Auth::check()) {
-            $tags = Tag::all();
-            $types = Type::all();
             return view('sell')->with(['tags'=>$tags,'types'=>$types]);
         }
-        return view('auth.login');
+        return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
     }
 
     public function getMyAccount()
@@ -124,30 +134,11 @@ class MainController extends Controller
             }
         endif;
 
+        $stock = Stock::all()->last();
+        $type = Type::all()->last();
+        $tags = Tag::all();
+        $types = Type::all();
 
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function postTest(Request $request){
-        $data = $request->all();
-//        dd($data);
-        print_r($data);
-    }
-    public function getTest(Request $request){
-        return view('test');
+        return view('view_product')->with(['stock'=>$stock, 'type'=>$type,'tags'=>$tags,'types'=>$types]);
     }
 }

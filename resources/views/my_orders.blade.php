@@ -1,4 +1,18 @@
-<div class="main-content" style="margin-top: 40px;">
-    <p style="text-align: center;font-size: 15px;">Best subscriber</p>
-my orders page
-</div>
+@extends('layouts.app')
+
+@section('page_title')
+    My Orders
+@endsection
+
+@section('content')
+    <script type="text/javascript">
+        $('.a-myorders').addClass('active');
+    </script>
+
+    {{--content my orders--}}
+
+
+
+
+
+@endsection

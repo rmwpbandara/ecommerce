@@ -7,26 +7,19 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>E-Commerce</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
     <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/select2.min.css" rel="stylesheet"/>
+    <link href="/css/styles.css" rel="stylesheet">
     <link href="/slider/nouislider.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="/Minimal-Full-Width-Content-Carousel-Plugin-with-jQuery/css/infinityCarousel.css"/>
 
     <!-- Scripts -->
     <script src="/js/angular-1.6.4/angular.min.js"></script>
     <script src="/js/jquery-3.2.1/jquery-3.2.1.min.js"></script>
     <script src="/slider/nouislider.min.js"></script>
-
-
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
-
 
     <script>
         window.Laravel = <?php echo json_encode([
@@ -70,9 +63,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a id="login" class="links">Login</a></li>
-                        <li><a id="register" class="links">Register</a></li>
-                        {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        {{--<li><a id="register" class="links">Register</a></li>--}}
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -109,12 +102,11 @@
     <div id="mySidenav" class="sidenav">
         <div class="content-leftnav">
             <div class="main-menu menu">
-                <a id="welcome" class="active links"><span><i class="glyphicon glyphicon-home"></i></span><span class="list-name">Home</span></a>
-                <a id="shop" class="links"><span><i class="glyphicon glyphicon-shopping-cart"></i></span><span class="list-name">Shop Products</span></a>
-                <a id="subscriptions" class="links"><span><i class="glyphicon glyphicon-asterisk"></i></span><span class="list-name">subscriptions</span></a>
-                <a id="myorders" class="links"><span><i class="glyphicon glyphicon-paperclip"></i></span><span class="list-name">My Orders</span></a>
-                <a id="sell" class="links"><span><i class="glyphicon glyphicon-open"></i></span><span class="list-name">Sell Products</span></a>
-
+                <a href="http://localhost:8000/" class="links a-home"><span><i class="glyphicon glyphicon-home"></i></span><span class="list-name">Home</span></a>
+                <a href="http://localhost:8000/shop" class="links a-shop"><span><i class="glyphicon glyphicon-shopping-cart"></i></span><span class="list-name">Shop Products</span></a>
+                <a href="http://localhost:8000/subscriptions" class="links a-subscriptions"><span><i class="glyphicon glyphicon-asterisk"></i></span><span class="list-name">subscriptions</span></a>
+                <a href="http://localhost:8000/myorders" class="links a-myorders"><span><i class="glyphicon glyphicon-paperclip"></i></span><span class="list-name">My Orders</span></a>
+                <a href="http://localhost:8000/sell" class="links a-sell"><span><i class="glyphicon glyphicon-open"></i></span><span class="list-name">Sell Products</span></a>
 
                 {{--<a id="sell" class="links"><span><i class="glyphicon glyphicon-open"></i></span><span class="list-name">Sell Products</span></a>--}}
                 <hr class="menu-section">
@@ -172,8 +164,11 @@
         </div>
     </div>
 
-    <div id="content" class="main-content" style="margin: 20px;">
+    <div id="content" class="main-content">
         {{--content append here--}}
+        <h3 class="page-title">@yield('page_title')</h3>
+        @yield('content')
+
     </div>
 </div>
 
@@ -181,8 +176,6 @@
 <script src="/js/app.js"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/select2.min.js"></script>
-
-
 
 </body>
 </html>

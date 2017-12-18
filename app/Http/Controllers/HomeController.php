@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Stock;
 use App\Tag;
 use App\Type;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class HomeController extends Controller
 
         $tags = Tag::all();
         $types = Type::all();
-        return view('home')->with(['tags'=>$tags,'types'=>$types]);
+        $stocks = Stock::all();
+        return view('home')->with(['tags'=>$tags,'types'=>$types, 'stocks'=>$stocks]);
 
 //        return view('home');
     }

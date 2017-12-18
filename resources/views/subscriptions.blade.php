@@ -1,4 +1,16 @@
-<div style="margin-top: 40px;">
+@extends('layouts.app')
+
+@section('page_title')
+    Subscriptions
+@endsection
+
+@section('content')
+    <script type="text/javascript">
+        $('.a-subscriptions').addClass('active');
+    </script>
+
+
+    <div style="margin-top: 40px;">
     <div class="center">
         <a href=# id="prev">Prev</a>
         <a href=# id="next">Next</a>
@@ -63,3 +75,6 @@
 
 {{--add cycle2 jqueary plugin--}}
 <script src="/js/cycle2/cycle2.js"></script>
+
+
+    @endsection
