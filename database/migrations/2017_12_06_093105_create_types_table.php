@@ -22,19 +22,19 @@ class CreateTypesTable extends Migration
         });
 
         DB::table('types')->insert([
-            'type' => 'type 01'
+            'type' => 'Stamp'
         ]);
         DB::table('types')->insert([
-            'type' => 'type 02'
+            'type' => 'Miniature Sheet'
         ]);
         DB::table('types')->insert([
-            'type' => 'type 03'
+            'type' => 'First Day Cover'
         ]);
         DB::table('types')->insert([
-            'type' => 'type 04'
+            'type' => 'Special Cover'
         ]);
         DB::table('types')->insert([
-            'type' => 'type 05'
+            'type' => 'Other'
         ]);
     }
 

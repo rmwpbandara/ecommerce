@@ -166,7 +166,7 @@
 
     <div id="content" class="main-content">
         {{--content append here--}}
-        <h3 class="page-title">@yield('page_title')</h3>
+        <h4 class="page-title">@yield('page_title')</h4>
         @yield('content')
 
     </div>

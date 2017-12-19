@@ -23,16 +23,25 @@ class CreateTagsTable extends Migration
         });
 
         DB::table('tags')->insert([
-            'name' => 'tag 01'
+            'name' => 'stamps'
         ]);
         DB::table('tags')->insert([
-            'name' => 'tag 02'
+            'name' => 'Sheets'
         ]);
         DB::table('tags')->insert([
-            'name' => 'tag 03'
+            'name' => 'Covers'
         ]);
         DB::table('tags')->insert([
-            'name' => 'tag 04'
+            'name' => 'Sri Lanka'
+        ]);
+        DB::table('tags')->insert([
+            'name' => 'Used'
+        ]);
+        DB::table('tags')->insert([
+            'name' => 'Not Used'
+        ]);
+        DB::table('tags')->insert([
+            'name' => 'Others'
         ]);
     }
 

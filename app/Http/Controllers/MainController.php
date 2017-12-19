@@ -6,6 +6,7 @@ use App\Stock;
 use App\Tag;
 use App\Tagging;
 use App\Type;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,12 @@ class MainController extends Controller
     public  function getHome(){
         $tags = Tag::all();
         $types = Type::all();
+        $stocks = Stock::all();
         //get recent records of products
-        $recentStocks = Stock::orderBy('id', 'desc')->take(3)->get();
-        $lowerstPriceStocks = Stock::orderBy('price', 'asc')->take(3)->get();
+        $recentStocks = Stock::orderBy('id', 'desc')->take(4)->get();
+        $lowerstPriceStocks = Stock::orderBy('price', 'asc')->take(4)->get();
 
-        return view('home')->with(['tags'=>$tags,'types'=>$types, 'recentStocks'=>$recentStocks,'lowerstPriceStocks'=>$lowerstPriceStocks]);
+        return view('home')->with(['tags'=>$tags,'types'=>$types, 'recentStocks'=>$recentStocks,'lowerstPriceStocks'=>$lowerstPriceStocks,'stocks'=>$stocks]);
     }
 
     public function getLogin(){
@@ -48,11 +50,11 @@ class MainController extends Controller
         $tags = Tag::all();
         $stocks = Stock::all();
         $types = Type::all();
+        $users = User::all();
 
         if (Auth::check()) {
 
-
-            return view('subscriptions')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types]);
+            return view('subscriptions')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types, 'users'=>$users]);
         }
         return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
     }
@@ -80,7 +82,6 @@ class MainController extends Controller
     {
         return view('my_acount');
     }
-
 
     public function postProduct(Request $request){
 
