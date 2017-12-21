@@ -25,7 +25,11 @@
                     <span>Rs.{{ $stock->price}}/-</span>
                 </div>
                 <div class="cart-btn-area">
-                    <button class="btn-success cart-btn ">add to cart</button>
+                    <button class="btn-success cart-btn add-to-cart" data-id="{{$stock->id}}" data-name="{{$stock->name}}" data-summary="{{$stock->description}}" data-price="{{$stock->price}}" data-quantity="{{ $stock->quantity}}" data-image="images/{{$stock->user_id}}{{$stock->id}}frontImage.jpg">
+                        <span class="cart-button">
+                            <i class="glyphicon glyphicon-shopping-cart"></i>
+                        </span>Add to Cart
+                    </button>
                 </div>
             </div>
         </div>

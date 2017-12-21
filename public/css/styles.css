@@ -17,7 +17,7 @@ body{
     top: 0;
     left: 0;
     background-color: #f8f8f8;
-    overflow-x: hidden;
+    overflow: scroll;
     transition: 0.2s;
     margin-top: 50px;
     width: 16%;
@@ -278,6 +278,9 @@ body{
     color: #411c0e;
     /*border-radius: 8px;*/
     background-color: #f7f7f7;
+    border-top: dotted 1px;
+    border-color: #e2e2e2;
+
 
 
     /*-moz-box-shadow:    inset 0 0 3px #000000;*/
@@ -302,6 +305,7 @@ body{
     width: 100%;
     text-align: center;
     background-color: #0e423b;
+    display: inline;
 
 }
 
@@ -311,25 +315,14 @@ body{
     text-decoration: none;
 }
 
-.categories-name{
-    color: white;
-    border-radius: 8px;
-    width: 100%;
-    text-align: center;
-    background-color: #0e423b;
-
-
-}
-
-
 .responsive .slick-prev{
-    background-color: #7a7e80;
+    background-color: #0e423b;
     height: 30px;
     width: 23px;
     border-radius: 10px;
 }
 .responsive .slick-next{
-    background-color: #7a7e80;
+    background-color: #0e423b;
     height: 30px;
     width: 23px;
     border-radius: 10px;
@@ -341,37 +334,31 @@ body{
     background-color: #006401;
 }
 
-/*categories styles*/
-
-.categories .slick-prev{
-    background-color: #7a7e80;
-    height: 30px;
-    width: 23px;
-    border-radius: 10px;
-}
-.categories .slick-next{
-    background-color: #7a7e80;
-    height: 30px;
-    width: 23px;
-    border-radius: 10px;
-}
-.categories .slick-prev:hover{
-    background-color: #006401;
-}
-.categories .slick-next:hover{
-    background-color: #006401;
-}
-
 .subcriber-name{
     text-align: center;
     color: #2b2d5a;
 }
 
 .page-heading{
+    font-size: 20px;
     margin-left: 20px;
     text-align: left;
-    color: #2b2d5a;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: underline;
+    /*font-weight: bold;*/
+
+}
+
+.cart-button{
+    margin-right: 10%;
+}
+
+
+
+.outer-btn
+{
+    width:100%;
+    text-align: center;
+}
+.inner-btn
+{
+    display: inline-block;
 }

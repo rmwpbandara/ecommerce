@@ -31,7 +31,7 @@
                             <span>Rs.{{ $stock['price']}}/-</span>
                         </div>
                         <div class="cart-btn-area">
-                            <button class="btn-success cart-btn">add to cart</button>
+                            <button class="btn-success cart-btn "><span class="cart-button"><i class="glyphicon glyphicon-shopping-cart"></i></span>Add to Cart</button>
                         </div>
                     </div>
                 </div>

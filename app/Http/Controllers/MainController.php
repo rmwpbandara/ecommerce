@@ -85,6 +85,13 @@ class MainController extends Controller
         return view('my_acount');
     }
 
+    public function getCart()
+    {
+        return view('cart');
+    }
+
+
+
     public function postProduct(Request $request){
 
         $authId = Auth::id();   //get auth user id

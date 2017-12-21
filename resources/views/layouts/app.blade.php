@@ -22,7 +22,10 @@
     <!-- Scripts -->
     <script src="/js/angular-1.6.4/angular.min.js"></script>
     <script src="/js/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/slider/nouislider.min.js"></script>
+
+
 
     <script>
         window.Laravel = <?php echo json_encode([
@@ -91,8 +94,20 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li>
+                            <div style="float: right; cursor: pointer;">
+                                <span class="glyphicon glyphicon-shopping-cart my-cart-icon" style="font-size: 25px;margin-right: 12px;margin-top: 10px;"><span class="badge badge-notify my-cart-badge"></span></span>
+                                <span id="count-cart">X</span>
+                                Rs.<span id="total-cart"></span>
+                            </div>
+
+                        </li>
                     @endif
+
+
                 </ul>
+
             </div>
         </div>
     </nav>
@@ -137,7 +152,6 @@
                 <div class="sidebar-types">
                     @foreach($types as $type)
                         <br>
-
                         <input type="checkbox" name="stamps" value="{{ $type->id}}">
                         <label style="margin-left: 10px;">{{ $type->type }}</label>
                     @endforeach
@@ -171,13 +185,18 @@
         {{--content append here--}}
         @yield('content')
 
+        <ul id="show-cart">
+            <li>???????</li>
+        </ul>
     </div>
 </div>
 
         <!-- Scripts -->
+<script src="js/shoppingCart.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/scripts.js"></script>
 <script src="/js/select2.min.js"></script>
+<script src="/cart/jquery.mycart.js"></script>
 
 </body>
 </html>

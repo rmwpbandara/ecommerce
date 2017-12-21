@@ -69,6 +69,14 @@ Route::get('/myaccount',[
     'as'=>'myaccount'
 ]);
 
+//cart page
+
+Route::get('/cart',[
+    'uses'=>'MainController@getCart',
+    'as'=>'cart'
+]);
+
+
 
 //add new products to the site
 Route::post('/addproduct',[
