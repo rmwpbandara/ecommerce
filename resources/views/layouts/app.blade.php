@@ -16,6 +16,9 @@
     <link href="/css/styles.css" rel="stylesheet">
     <link href="/slider/nouislider.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+
     <!-- Scripts -->
     <script src="/js/angular-1.6.4/angular.min.js"></script>
     <script src="/js/jquery-3.2.1/jquery-3.2.1.min.js"></script>
@@ -166,7 +169,6 @@
 
     <div id="content" class="main-content">
         {{--content append here--}}
-        <h4 class="page-title">@yield('page_title')</h4>
         @yield('content')
 
     </div>

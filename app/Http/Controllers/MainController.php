@@ -20,10 +20,10 @@ class MainController extends Controller
         $types = Type::all();
         $stocks = Stock::all();
         //get recent records of products
-        $recentStocks = Stock::orderBy('id', 'desc')->take(4)->get();
-        $lowerstPriceStocks = Stock::orderBy('price', 'asc')->take(4)->get();
+        $recentStocks = Stock::orderBy('id', 'desc')->take(8)->get();
+        $lowestPriceStocks = Stock::orderBy('price', 'asc')->take(8)->get();
 
-        return view('home')->with(['tags'=>$tags,'types'=>$types, 'recentStocks'=>$recentStocks,'lowerstPriceStocks'=>$lowerstPriceStocks,'stocks'=>$stocks]);
+        return view('home')->with(['tags'=>$tags,'types'=>$types, 'recentStocks'=>$recentStocks,'lowestPriceStocks'=>$lowestPriceStocks,'stocks'=>$stocks]);
     }
 
     public function getLogin(){
@@ -48,7 +48,8 @@ class MainController extends Controller
 
     public function getSubscriptions(){
         $tags = Tag::all();
-        $stocks = Stock::all();
+//        $stocks = Stock::all();
+        $stocks = Stock::all()->toArray();
         $types = Type::all();
         $users = User::all();
 
@@ -63,8 +64,9 @@ class MainController extends Controller
         $tags = Tag::all();
         $stocks = Stock::all();
         $types = Type::all();
+        $users = DB::table('users')->simplePaginate(2);
         if (Auth::check()) {
-            return view('my_orders')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types]);
+            return view('my_orders')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'users'=>$users]);
         }
         return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
     }

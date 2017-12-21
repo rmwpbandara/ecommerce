@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('page_title')
-    Sell Products
-@endsection
 
 @section('content')
     <script type="text/javascript">

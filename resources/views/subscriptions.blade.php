@@ -1,57 +1,82 @@
 @extends('layouts.app')
 
-@section('page_title')
-    Subscriptions
-@endsection
-
 @section('content')
-    <script type="text/javascript">
-        $('.a-subscriptions').addClass('active');
-    </script>
 
-    @foreach($users as $user)
-    <div class="col-sm-4">
-        <p>{{$user->name}}</p>
-        <div class="center">
-            <a href=# id="prev{{$user->id}}">Prev</a>
-            <a href=# id="next{{$user->id}}">Next</a>
-        </div>
+<script type="text/javascript">
+    $('.a-subscriptions').addClass('active');
+</script>
 
-        <div class="col-sm-12">
-            <div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-slides="> div" data-cycle-timeout="0" data-cycle-prev="#prev{{$user->id}}" data-cycle-next="#next{{$user->id}}" >
-                @foreach($stocks as $stock)
-                    @if($user->id==$stock->user_id)
-                        <div class="col-sm-12 element-outline">
-                            <div class="product">
-                                <div class="image">
-                                    <img class="image-img" src="images/{{$stock->user_id}}{{$stock->id}}frontImage.jpg">
-                                </div>
-                                <div class="product-type">
-                                    @foreach($types as $type)
-                                        @if($stock->type_id == $type->id)
-                                            <span>{{ $type->type }}</span>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <div class="product-name">
-                                    <span>{{ $stock->name}}</span>
-                                </div>
-                                <div class="product-price">
-                                    <span>Rs.{{ $stock->price}}/-</span>
-                                </div>
-                                <div class="cart-btn-area">
-                                    <button class="btn-success cart-btn">add to cart</button>
-                                </div>
+
+@foreach($users as $user)
+    <h3 class="subcriber-name">{{$user->name}}'s Products</h3>
+    <div class="responsive">
+        @foreach($stocks as $stock)
+            @if($user->id==$stock['user_id'])
+                <div class="col-sm-3 element-outline">
+                    <div class="product">
+                        <div class="image">
+                            <div class="">
+                                @foreach($types as $type)
+                                    @if($stock['type_id'] == $type->id)
+                                        <span>{{ $type->type }}</span>
+                                    @endif
+                                @endforeach
                             </div>
+                            <img class="image-img" src="images/{{$stock['user_id']}}{{$stock['id']}}frontImage.jpg">
                         </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
+                        <div class="product-name">
+                            <span>{{ $stock['name']}}</span>
+                        </div>
+                        <div class="product-price">
+                            <span>Rs.{{ $stock['price']}}/-</span>
+                        </div>
+                        <div class="cart-btn-area">
+                            <button class="btn-success cart-btn">add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
     </div>
-    @endforeach
-{{--add cycle2 jqueary plugin--}}
-<script src="/js/cycle2/cycle2.js"></script>
+@endforeach
 
+<script type="text/javascript" src="slick/slick.min.js"></script>
 
-    @endsection
+<script type="text/javascript">
+    $('.responsive').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
+    });
+</script>
+@endsection

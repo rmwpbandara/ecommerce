@@ -26,15 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $tags = Tag::all();
-        $types = Type::all();
-        $stocks = Stock::all();
-        $recentStocks = Stock::orderBy('id', 'desc')->take(4)->get();
-        $lowerstPriceStocks = Stock::orderBy('price', 'asc')->take(4)->get();
-
-        return view('home')->with(['tags'=>$tags,'types'=>$types, 'recentStocks'=>$recentStocks,'lowerstPriceStocks'=>$lowerstPriceStocks]);
-
 //        return view('home');
+        return redirect()->route('home');
     }
 }
