@@ -5,10 +5,12 @@ var shoppingCart = (function () {
     // Private methods and properties
     var cart = [];
 
-    function Item(name, price, count) {
+    function Item(name, price, count,productId,shippingCost) {
         this.name = name
         this.price = price
         this.count = count
+        this.productId = productId
+        this.shippingCost = shippingCost
     }
 
     function saveCart() {
@@ -29,7 +31,7 @@ var shoppingCart = (function () {
     // Public methods and properties
     var obj = {};
 
-    obj.addItemToCart = function (name, price, count) {
+    obj.addItemToCart = function (name, price, count, productId,shippingCost) {
         for (var i in cart) {
             if (cart[i].name === name) {
                 cart[i].count += count;
@@ -38,12 +40,17 @@ var shoppingCart = (function () {
             }
         }
 
-        console.log("addItemToCart:", name, price, count);
+        console.log("addItemToCart:", name, price, count, productId,shippingCost);
 
-        var item = new Item(name, price, count);
+        var item = new Item(name, price, count, productId,shippingCost);
         cart.push(item);
         saveCart();
+
+        //console.log(cart);
     };
+
+    //console.log(cart);
+
 
     obj.setCountForItem = function (name, count) {
         for (var i in cart) {
@@ -80,7 +87,6 @@ var shoppingCart = (function () {
         saveCart();
     };
 
-
     obj.clearCart = function () {
         cart = [];
         saveCart();
@@ -104,12 +110,24 @@ var shoppingCart = (function () {
         return totalCost.toFixed(2);
     };
 
+//calculate total shipping cost------------------------------------------------
+    obj.totalCartShipping = function () { // -> return total shipping
+        var totalCostShipping = 0;
+        for (var i in cart) {
+            totalCostShipping += cart[i].shippingCost * cart[i].count;
+        }
+
+        //alert(totalCostShipping);
+        return totalCostShipping.toFixed(2);
+    };
+
+
+
     obj.listCart = function () { // -> array of Items
         var cartCopy = [];
-        console.log("Listing cart");
-        console.log(cart);
+        //console.log("Listing cart:",cart);
         for (var i in cart) {
-            console.log(i);
+            //console.log(i);
             var item = cart[i];
             var itemCopy = {};
             for (var p in item) {
@@ -118,7 +136,12 @@ var shoppingCart = (function () {
             itemCopy.total = (item.price * item.count).toFixed(2);
             cartCopy.push(itemCopy);
         }
+        //
+        //console.log('cartCopy is : ');
+        //console.log(cartCopy);
         return cartCopy;
+
+
     };
 
     // ----------------------------

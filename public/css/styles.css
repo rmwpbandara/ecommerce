@@ -1,6 +1,7 @@
 /*main styles------------------------------------------------------------------------*/
 body{
     background-color: white;
+    color: black;
 }
 
 .navbar{
@@ -205,113 +206,80 @@ body{
 /*element of product------------------------------------------------------------------------*/
 
 .element-outline{
-    margin-top: 10px;
-
+    padding: 20px;
 }
 
 .element-outline .product{
-    /*border: 1px solid;*/
-    border-radius: 10px;
     text-align: center;
-    margin-bottom: 20px;
-    /*-moz-box-shadow:    inset 0 0 6px #000000;*/
-    /*-webkit-box-shadow: inset 0 0 6px #000000;*/
-    /*box-shadow:         inset 0 0 6px #000000;*/
-    /*box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);*/
-    /*-webkit-box-shadow: 6px -7px 8px -1px rgba(106,125,104,1);*/
-    /*-moz-box-shadow: 6px -7px 8px -1px rgba(106,125,104,1);*/
-    /*box-shadow: 6px -7px 8px -1px rgba(106,125,104,1);*/
+    margin-bottom: 10px;
 }
 
 .element-outline .product .image{
-    background-color: #f3f3f3;
+    background-color: #f7f7f7;
     width: 100%;
     height: 150px;
     padding-top: 4px;
     padding-bottom: 30px;
-    border-bottom: 1px solid;
-    border-top: 1px solid;
-    border-color: #cccccc;
-    /*border: 1px solid;*/
+    border: 2px solid #b8b8b8;
+    border-right: 1px solid #b8b8b8;
+    border-left: 1px solid #b8b8b8;
     border-radius: 8px;
     text-align: center;
-    /*-moz-box-shadow:    inset 0 0 8px #000000;*/
-    /*-webkit-box-shadow: inset 0 0 8px #000000;*/
-    /*box-shadow:         inset 0 0 8px #000000;*/
-
+}
+.element-outline .product .image:hover{
+    background-color: rgba(203, 164, 248, 0.22);
 }
 
-.image-img{
-    border-radius: 8px;
+.product-image{
+    border-radius: 4px;
     max-width: 100%;
     max-height: 100%;
     vertical-align: middle;
-    /*transform: rotate(-8deg) scale(1);*/
 }
 
 
 .element-outline .product .product-type{
     color: black;
-    /*border: 1px solid;*/
     border-radius: 4px;
-    /*border-color: #a9bcbd;*/
-    background-color: #f7f7f7;
-    /*text-shadow: 2px 2px 4px #000000;*/
-
-
-    /*-moz-box-shadow:    inset 0 0 2px #2a3a29;*/
-    /*-webkit-box-shadow: inset 0 0 2px #2a3a29;*/
-    /*box-shadow:         inset 0 0 2px #2a3a29;*/
 }
 
 .element-outline .product .product-name{
-    color: #111111;
+    padding-left: 15px;
+    border-top: 1px solid #b8b8b8;
+    border-bottom: 1px solid #b8b8b8;
+    text-align: center;
+    font-style: italic;
+    text-decoration: underline;
+    color: black;
     border-radius: 4px;
-    background-color: #f7f7f7;
-
-    /*-moz-box-shadow:    inset 0 0 2px #000000;*/
-    /*-webkit-box-shadow: inset 0 0 2px #000000;*/
-    /*box-shadow:         inset 0 0 2px #000000;*/
+    font-size: 12px;
+    background-color: rgba(184, 184, 184, 0.22);
 }
 
 .element-outline .product .product-price{
-    color: #411c0e;
-    /*border-radius: 8px;*/
-    background-color: #f7f7f7;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    border-radius: 6px;
     border-top: dotted 1px;
     border-color: #e2e2e2;
-
-
-
-    /*-moz-box-shadow:    inset 0 0 3px #000000;*/
-    /*-webkit-box-shadow: inset 0 0 3px #000000;/*/
-    /*box-shadow:         inset 0 0 3px #000000;*/
 }
 
-
-/*.cart-btn{*/
-    /*border-radius: 8px;*/
-    /*background-color: #008800;*/
-    /*text-align: center;*/
-/*}*/
 .cart-btn-area{
-    background-color: #ededed;
+    margin-bottom: 10px
 }
-
 .cart-btn {
-
+    font-size: 11px;
     color: white;
-    border-radius: 8px;
-    width: 100%;
-    text-align: center;
-    background-color: #0e423b;
-    display: inline;
+    border-radius: 4px;
+    background-color: #006401;
+    border-color: #006401;
 
 }
 
 .cart-btn:hover {
     color: white;
-    background: #006401;
+    background-color: #006401;
     text-decoration: none;
 }
 
@@ -344,7 +312,6 @@ body{
     margin-left: 20px;
     text-align: left;
     /*font-weight: bold;*/
-
 }
 
 .cart-button{
@@ -361,4 +328,159 @@ body{
 .inner-btn
 {
     display: inline-block;
+}
+
+#clear-cart{
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #0e423b;
+}
+
+.cart-top {
+    border-bottom: solid 1px;
+    border-color: #b7b7b7;
+}
+.cart-bottom {
+    border-top: solid 1px;
+    border-color: #b7b7b7;
+}
+
+
+.show-cart{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.show-cart i{
+    font-size: 17px;
+}
+
+.cart-product-name{
+
+    float: left;
+    padding-left: 1px;
+}
+
+.cart-product-quantity,{
+    text-align: center;
+}
+
+.cart-product-price, .cart-product-total{
+    text-align: right;
+}
+
+.cart-product-name , .cart-product-price, .cart-product-quantity, .cart-product-total{
+    margin-bottom: 15px;
+}
+
+
+.item-count{
+    border-radius: 10px;
+}
+
+.plus-item, .subtract-item, .cart-product-delete{
+    border-radius: 10px;
+}
+
+.cart-shipping-value{
+    border-bottom: solid 1px;
+    border-color: #b7b7b7;
+}
+
+.cart-total-value{
+    border-bottom: double 1px;
+    border-color: #b7b7b7;
+}
+
+.limit {
+    color: black;
+    /*text-align: center;*/
+    display: block;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*checkbox styles-------------------------------------------------------------------------- */
+.shipping-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    /*margin-bottom: 12px;*/
+    cursor: pointer;
+    /*font-size: 22px;*/
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    padding-top: 6px;
+}
+
+/* Hide the browser's default checkbox */
+.shipping-checkbox input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    margin-top: 5px;
+    margin-left: 3px;
+}
+
+/* On mouse-over, add a grey background color */
+.shipping-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.shipping-checkbox input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.shipping-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.shipping-checkbox .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.country-select{
+    width: 100%;
+}
+
+
+.search-btn{
+    color: white;
+    background-color: #374d3b;
+    border-color: #374d3b;
+    border-radius: 3px;
 }

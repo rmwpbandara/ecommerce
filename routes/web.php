@@ -71,9 +71,9 @@ Route::get('/myaccount',[
 
 //cart page
 
-Route::get('/cart',[
-    'uses'=>'MainController@getCart',
-    'as'=>'cart'
+Route::get('/mycart',[
+    'uses'=>'CartController@getCart',
+    'as'=>'mycart'
 ]);
 
 
@@ -83,3 +83,23 @@ Route::post('/addproduct',[
     'uses'=>'MainController@postProduct',
     'as'=>'addProduct'
 ]);
+
+
+
+//shippingCalculate
+Route::post('/shippingCalculate',[
+    'uses'=>'cartController@postShippingCalculate',
+    'as'=>'shippingCalculate'
+]);
+
+Route::post('/test',[
+    'uses'=>'cartController@test',
+    'as'=>'test'
+]);
+
+
+Route::post('/search',[
+    'uses'=>'ProductController@postSearch',
+    'as'=>'search'
+]);
+

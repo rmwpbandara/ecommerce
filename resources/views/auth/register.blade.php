@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="container" style="margin-top: 15%;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -22,6 +23,13 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country" class="col-md-4 control-label">Country</label>
+                            <div class="col-md-6">
+                                <input id="country_selector" class="form-control" type="text" name="country">
                             </div>
                         </div>
 
@@ -74,4 +82,15 @@
         </div>
     </div>
 </div>
+
+<script src="country-selector/build//js/countrySelect.min.js"></script>
+
+<script>
+    $("#country_selector").countrySelect({
+        defaultCountry: "lk",
+        //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        preferredCountries: ['lk', 'us', 'gb']
+    });
+</script>
+
 @endsection

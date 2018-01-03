@@ -19,10 +19,10 @@
                                 @endif
                             @endforeach
                         </div>
-                        <img class="image-img" src="images/{{$recentStock->user_id}}{{$recentStock->id}}frontImage.jpg">
+                        <img class="product-image" src="images/{{$recentStock->user_id}}{{$recentStock->id}}frontImage.jpg">
                     </div>
                     <div class="product-name">
-                        <span>{{ $recentStock->name}}</span>
+                        <span>{{ $recentStock->productName}}</span>
                     </div>
                     <div class="product-price">
                         <span>Rs.{{ $recentStock->price}}/-</span>
@@ -51,11 +51,11 @@
                             @endforeach
                         </div>
 
-                        <img class="image-img" src="images/{{$lowestPriceStock->user_id}}{{$lowestPriceStock->id}}frontImage.jpg" style="display: contents;">
+                        <img class="product-image" src="images/{{$lowestPriceStock->user_id}}{{$lowestPriceStock->id}}frontImage.jpg" style="display: contents;">
                     </div>
 
                     <div class="product-name">
-                        <span>{{ $lowestPriceStock->name}}</span>
+                        <span>{{ $lowestPriceStock->productName}}</span>
                     </div>
                     <div class="product-price">
                         <span>Rs.{{ $lowestPriceStock->price}}/-</span>

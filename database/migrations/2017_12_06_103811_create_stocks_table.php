@@ -15,11 +15,13 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('productName');
             $table->string('description');
             $table->string('quantity');
             $table->string('previousPrice')->nullable();
             $table->string('price');
+            $table->string('shippingLocal')->nullable();
+            $table->string('shippingInternational')->nullable();
             $table->string('image1Url')->nullable();
             $table->string('image2Url')->nullable();
 
@@ -41,7 +43,7 @@ class CreateStocksTable extends Migration
 
 
         DB::table('stocks')->insert([
-            'name' => 'product01',
+            'productName' => 'product01',
             'description' => 'despt01',
             'quantity' => '01',
             'previousPrice' => '20',

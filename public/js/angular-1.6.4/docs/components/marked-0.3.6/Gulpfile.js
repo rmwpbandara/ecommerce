@@ -13,7 +13,7 @@ var preserveFirstComment = function() {
 };
 
 gulp.task('uglify', function() {
-  gulp.src('lib/marked.js')
+  gulp.src('Libs/marked.js')
     .pipe(uglify({preserveComments: preserveFirstComment()}))
     .pipe(concat('marked.min.js'))
     .pipe(gulp.dest('.'));

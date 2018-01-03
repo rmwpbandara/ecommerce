@@ -10,7 +10,7 @@
                 <span>{{ $type->type }}</span>
             </div>
             <div class="product-name">
-                <span>{{ $stock->name}}</span>
+                <span>{{ $stock->productName}}</span>
             </div>
             <div class="product-price">
                 <span>Rs.{{ $stock->price}}/-</span>

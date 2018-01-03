@@ -21,7 +21,7 @@ $provide.value("$locale", {
       "Nsima ya Y\u00e9zu Kr\u00eds"
     ],
     "ERAS": [
-      "lib\u00f3so ya",
+      "Libs\u00f3so ya",
       "nsima ya Y"
     ],
     "FIRSTDAYOFWEEK": 0,

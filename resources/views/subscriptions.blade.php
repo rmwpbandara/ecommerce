@@ -22,10 +22,10 @@
                                     @endif
                                 @endforeach
                             </div>
-                            <img class="image-img" src="images/{{$stock['user_id']}}{{$stock['id']}}frontImage.jpg">
+                            <img class="product-image" src="images/{{$stock['user_id']}}{{$stock['id']}}frontImage.jpg">
                         </div>
                         <div class="product-name">
-                            <span>{{ $stock['name']}}</span>
+                            <span>{{ $stock['productName']}}</span>
                         </div>
                         <div class="product-price">
                             <span>Rs.{{ $stock['price']}}/-</span>
