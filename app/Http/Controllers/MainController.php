@@ -40,13 +40,9 @@ class MainController extends Controller
 
     public function getShop(){
         $tags = Tag::all();
-//        $stocks = Stock::all();
+        $stocks = Stock::all();
         $types = Type::all();
 
-
-        $stocks = DB::table('stocks')->leftJoin('users', 'stocks.user_id', '=', 'users.id')->get();
-
-//        dd($stocks);
         if (Auth::check()) {
             $authCountry = Auth::user()->country;
             $authId = Auth::id();

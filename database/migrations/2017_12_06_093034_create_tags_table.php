@@ -15,7 +15,7 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('tag_name');
 
             $table->rememberToken();
             $table->timestamps();
@@ -23,25 +23,25 @@ class CreateTagsTable extends Migration
         });
 
         DB::table('tags')->insert([
-            'name' => 'stamps'
+            'tag_name' => 'stamps'
         ]);
         DB::table('tags')->insert([
-            'name' => 'Sheets'
+            'tag_name' => 'Sheets'
         ]);
         DB::table('tags')->insert([
-            'name' => 'Covers'
+            'tag_name' => 'Covers'
         ]);
         DB::table('tags')->insert([
-            'name' => 'Sri Lanka'
+            'tag_name' => 'Sri Lanka'
         ]);
         DB::table('tags')->insert([
-            'name' => 'Used'
+            'tag_name' => 'Used'
         ]);
         DB::table('tags')->insert([
-            'name' => 'Not Used'
+            'tag_name' => 'Not Used'
         ]);
         DB::table('tags')->insert([
-            'name' => 'Others'
+            'tag_name' => 'Others'
         ]);
     }
 

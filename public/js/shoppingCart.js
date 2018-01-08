@@ -114,11 +114,10 @@ var shoppingCart = (function () {
     obj.totalCartShipping = function () { // -> return total shipping
         var totalCostShipping = 0;
         for (var i in cart) {
-            totalCostShipping += cart[i].shippingCost * cart[i].count;
+            totalCostShipping = Math.floor(totalCostShipping)+Math.floor(cart[i].shippingCost) ;
         }
-
         //alert(totalCostShipping);
-        return totalCostShipping.toFixed(2);
+        return totalCostShipping;
     };
 
 

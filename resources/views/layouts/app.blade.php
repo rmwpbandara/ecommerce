@@ -129,7 +129,7 @@
                     <label>Add tags here. .</label>
                     <select class="select-tags" name="tagId[]" multiple="multiple" style="width: 100%;">
                         @foreach($tags as $tag)
-                            <option value="{{ $tag->id}}"> {{ $tag->name }}</option>
+                            <option value="{{ $tag->id}}"> {{ $tag->tag_name }}</option>
                         @endforeach
                     </select>
 

@@ -22,4 +22,8 @@ class Stock extends Model
         return $this->hasMany('App\Tagging');
     }
 
+    public function favourite(){
+        return $this->hasMany('App\Favourite');
+    }
+
 }

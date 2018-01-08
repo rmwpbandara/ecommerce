@@ -141,7 +141,7 @@
                                 <div class="col-md-6">
                                     <select class="select-tags form-control" name="states[]" multiple="multiple">
                                         @foreach($tags as $tag)
-                                            <option value="{{ $tag->id}}"> {{ $tag->name }}</option>
+                                            <option value="{{ $tag->id}}"> {{ $tag->tag_name }}</option>
                                         @endforeach
                                     </select>
                                     <script type="text/javascript">
