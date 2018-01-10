@@ -18,12 +18,17 @@ class MainController extends Controller
     public  function getHome(){
         $tags = Tag::all();
         $types = Type::all();
-        $stocks = Stock::all();
         //get recent records of products
-        $recentStocks = Stock::orderBy('id', 'desc')->take(8)->get();
-        $lowestPriceStocks = Stock::orderBy('price', 'asc')->take(8)->get();
+        $stocks = Stock::orderBy('id', 'desc')->take(20)->get();
 
-        return view('home')->with(['tags'=>$tags,'types'=>$types, 'recentStocks'=>$recentStocks,'lowestPriceStocks'=>$lowestPriceStocks,'stocks'=>$stocks]);
+        if (Auth::check()) {
+            $authCountry = Auth::user()->country;
+            $authId = Auth::id();
+            return view('home')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry]);
+
+        }
+        return view('home')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>0,'authCountry'=>'null']);
+
     }
 
     public function getLogin(){
@@ -51,9 +56,6 @@ class MainController extends Controller
         }
 
         return view('shop')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>0,'authCountry'=>'null']);
-
-
-
     }
 
     public function getSubscriptions(){
@@ -95,90 +97,4 @@ class MainController extends Controller
         return view('my_acount');
     }
 
-
-
-
-    public function postProduct(Request $request){
-
-        $authId = Auth::id();   //get auth user id
-
-        $ProductId= DB::table('Stocks')->find(DB::table('Stocks')->max('id'))->id+1; //load database last id and + 1
-
-
-
-        //request variables and save all
-        $productName=$request->name;
-        $productDescription=$request->description;
-        $quantity=$request->quantity;
-        $previousPrice=$request->previousPrice;
-        $price=$request->price;
-        $productType=$request->productType;
-        $shippingLocal=$request->shippingLocal;
-        $shippingInternational=$request->shippingInternational;
-
-
-        //create front image name with auth id+product id + image name and request image
-        $fileNameFrontImage = $authId.$ProductId.'frontImage'.'.jpg';
-        $frontImage=$request->frontImage;
-        if(!empty($frontImage)){
-            $frontImage->move('images',$fileNameFrontImage);    //store image to 'images' folder in public folder
-        }
-
-        //create back image name with auth id+product id + image name and request image
-        $backImage=$request->backImage;
-        $fileNameBackImage = $authId.$ProductId.'backImage'.'.jpg';
-        if(!empty($backImage)){
-            $backImage->move('images',$fileNameBackImage);      //store image to 'images' folder in public folder
-        }
-
-
-//        $shippingLocalFree=0;
-
-        if($shippingLocal==null){
-            $shippingLocal=0;
-        }
-        else{
-            $shippingLocal=$request->shippingLocal;
-        }
-
-        if($shippingInternational==null){
-            $shippingInternational=0;
-        }
-        else{
-            $shippingInternational=$request->shippingInternational;
-        }
-
-        $stock = new Stock();                           //create new object Stock
-        $stock->productName=$productName;
-        $stock->description=$productDescription;
-        $stock->quantity=$quantity;
-        $stock->previousPrice=$previousPrice;
-        $stock->price=$price;
-        $stock->shippingLocal=$shippingLocal;
-        $stock->shippingInternational=$shippingInternational;
-        $stock->image1Url=$fileNameFrontImage;
-        $stock->image2Url=$fileNameBackImage;
-        $stock->type_id=$productType;
-        $stock->user_id=$authId;
-
-        $stock->save();
-
-        //save taggin to tagging table
-        $tags = $request['states'];
-        if (!empty($tags)):
-            foreach ($tags as $tagStatesId => $tagId) {
-                $tagging = new Tagging();
-                $tagging->tag_id = $tagId;
-                $tagging->stock_id=$ProductId;          //use product id to save tagging table product id column
-                $tagging->save();
-            }
-        endif;
-
-        $stock = Stock::all()->last();
-        $type = Type::all()->last();
-        $tags = Tag::all();
-        $types = Type::all();
-
-        return view('view_product')->with(['stock'=>$stock, 'type'=>$type,'tags'=>$tags,'types'=>$types]);
-    }
 }

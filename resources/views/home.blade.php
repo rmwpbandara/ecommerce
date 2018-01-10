@@ -19,12 +19,12 @@
                                 @endif
                             @endforeach
                         </div>
-                        <img class="product-image image-blur" src="images/{{$stock->image1Url}}">
-
-                        <div class="btn-img-hover">
-                            <p>Available:  {{$stock->quantity}}</p>
-                        </div>
-
+                        <span class="image-blur">
+                            <img class="product-image" src="images/{{$stock->image1Url}}">
+                        </span>
+                        <span class="btn-img-hover">
+                            <img class="product-image-2" src="images/{{$stock->image2Url}}">
+                        </span>
                     </div>
 
                     <div class="product-price">
@@ -40,9 +40,14 @@
                                 <i class="glyphicon glyphicon-shopping-cart add-to-cart-icon"></i>
                             </button>
                         </span>
-                            <button title="Add To Favorite" class="add-to-favorite-btn" data-auth-id="{{$authId}}" data-auth-country="{{$authCountry}}" data-id="{{$stock->id}}" data-name="{{$stock->productName}}" data-product-id="{{$stock->id}}" data-summary="{{$stock->description}}" data-price="{{$stock->price}}" data-quantity="{{ $stock->quantity}}" data-shipping-local="{{ $stock->shippingLocal}}" data-shipping-international="{{ $stock->shippingInternational}}" data-seller-country="{{$stock->country}}" data-image="images/{{$stock->user_id}}{{$stock->id}}frontImage.jpg">
-                                <i class="glyphicon glyphicon-heart-empty favorite-icon" ></i>
-                            </button>
+                            <span id="{{$stock->id}}">
+                                {{--<button class="view-favourite" style="display: none"></button>--}}
+                                <button id="favouriteBtn{{$stock->id}}" onclick="addToFavourite(this)" title="Add To Favorite" class="add-to-favorite-btn" data-auth-id="{{$authId}}" data-product-id="{{$stock->id}}">
+                                    <i class="glyphicon glyphicon-heart-empty favorite-icon" ></i>
+                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                </button>
+                            </span>
+
                             <button title="Quick View" class="view-more-btn" data-auth-id="{{$authId}}" data-auth-country="{{$authCountry}}" data-id="{{$stock->id}}" data-name="{{$stock->productName}}" data-product-id="{{$stock->id}}" data-summary="{{$stock->description}}" data-price="{{$stock->price}}" data-quantity="{{ $stock->quantity}}" data-shipping-local="{{ $stock->shippingLocal}}" data-shipping-international="{{ $stock->shippingInternational}}" data-seller-country="{{$stock->country}}" data-image="images/{{$stock->user_id}}{{$stock->id}}frontImage.jpg">
                                 <i class="glyphicon glyphicon-eye-open more-icon"></i>
                             </button>

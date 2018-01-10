@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Add Products</div>
+                    <div class="panel-heading">Add Product</div>
                     <div class="panel-body">
                         <form id="saveProduct" class="form-horizontal" action="{{route('addProduct')}}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -26,8 +26,6 @@
                                     </select>
                                 </div>
                             </div>
-
-
                             {{--product name--}}
                             <div class="form-group">
                                 <label for="name" class="col-md-4 control-label">Name</label>
@@ -53,7 +51,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             {{--product price--}}
                             <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
                                 <label for="price" class="col-md-4 control-label">Price</label>
@@ -67,7 +64,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             {{--product quantity--}}
                             <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
                                 <label for="quantity" class="col-md-4 control-label">Quantity</label>
@@ -81,8 +77,6 @@
                                     @endif
                                 </div>
                             </div>
-
-
                             {{--product shipping--}}
                             <div class="form-group">
                                 <label for="Shipping Local" class="col-md-4 control-label">Shipping Local</label>
@@ -109,7 +103,6 @@
                                     <input id="shippingInternational" type="number" placeholder="Shipping price" class="form-control" name="shippingInternational" disabled>
                                 </div>
                             </div>
-
                             {{--product image_01--}}
                             <div class="form-group{{ $errors->has('frontImage') ? ' has-error' : '' }}">
                                 <label for="image_01" class="col-md-4 control-label">Front Image</label>
@@ -137,7 +130,6 @@
                             {{--product tags--}}
                             <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
                                 <label for="tags" class="col-md-4 control-label">Tags</label>
-
                                 <div class="col-md-6">
                                     <select class="select-tags form-control" name="states[]" multiple="multiple">
                                         @foreach($tags as $tag)
@@ -150,15 +142,16 @@
                                         });
                                     </script>
                                 </div>
-
                             </div>
-
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button id="addProductBtn" class="btn btn-primary addproduct" type="submit">
-                                        Add product to sell
+                                        Submit
                                     </button>
+                                    {{--<button id="addProductBtn" class="btn btn-primary addproduct" type="submit">--}}
+                                        {{--Submit & Add Another Product--}}
+                                    {{--</button>--}}
                                 </div>
                             </div>
                         </form>

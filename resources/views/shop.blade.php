@@ -8,15 +8,20 @@
     @foreach($stocks as $stock)
         <div class="col-sm-3 element-outline">
             <div class="product" id="product-id-{{$stock->id}}">
-                <div class="image">
-                    <div class="product-type">
+                <div class="image container-img">
+                    <div class="product-type image-blur">
                         @foreach($types as $type)
                             @if($stock->type_id == $type->id)
                                 <span>{{ $type->type }}</span>
                             @endif
                         @endforeach
                     </div>
-                    <img class="product-image" src="images/{{$stock->image1Url}}">
+                    <span class="image-blur">
+                        <img class="product-image" src="images/{{$stock->image1Url}}">
+                    </span>
+                    <span class="btn-img-hover">
+                        <img class="product-image-2" src="images/{{$stock->image2Url}}">
+                    </span>
                 </div>
                 <div class="product-price">
                     <span>Rs.{{ $stock->price}}/-</span>

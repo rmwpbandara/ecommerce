@@ -110,7 +110,7 @@ $(".add-to-cart").click(function(event){
         else{
             shoppingCart.addItemToCart(name, price, productOrderQty, productId,shippingCost);
             displayCart();
-            changeBtn(element);
+            changeBtnCart(element);
             $(this).remove();
         }
     }
@@ -126,7 +126,7 @@ $('.item-qty').bind('keyup change', function() {
     element.setAttribute("value",value);
 });
 
-function changeBtn(element){
+function changeBtnCart(element){
     element.children('input').remove();
     element.children('.modify-cart').show().html('Modify Cart');
 }
@@ -206,26 +206,51 @@ $("#show-cart").on("change", ".item-count", function(event){
 displayCart();
 
 
-
-
-
 //Favorite button
 
-
 //-------------------------------------------------------------------------------------add to cart
-$(".add-to-favorite-btn").click(function(event){
-    event.preventDefault();
-    var authId = $(this).attr("data-auth-id");
-    if(authId==0){
-        window.location = "/login";
-    }
-    else{
-        var productId = Number($(this).attr("data-product-id"));
-        alert(productId);
-    }
-});
+//$(".add-to-favorite-btn").click(function(event){
+//    event.preventDefault();
+//    var authId = $(this).attr("data-auth-id");
+//    if(authId==0){
+//        window.location = "/login";
+//    }
+//    else{
+//        var productId = Number($(this).attr("data-product-id"));
+//        console.log('data :',authId,productId);
+//
+//        $.ajax({
+//            type: 'POST',
+//            url: '/savefavourite',
+//            data: {
+//                "_token": $('#token').val(),
+//                "productId": productId,
+//                "authId":authId
+//            },
+//            success: function (data) {
+//                console.log(data);
+//            },
+//            error: function (reject) {
+//                console.log(reject);
+//            }
+//        });
+//    }
+//});
 
 
+
+
+
+function addToFavourite(element){
+    console.log(element.id);
+
+    element.removeAttribute('onclick');
+    element.setAttribute("onclick","viewFavourite(this)");
+}
+
+function viewFavourite(element){
+
+}
 
 
 
@@ -283,8 +308,6 @@ $(".add-to-favorite-btn").click(function(event){
 //        url: '/addproduct',
 //        enctype :"multipart/form-data",
 //        processData : false,
-//
-//
 //        data: data,
 //
 //        //mimeType: "multipart/form-data",

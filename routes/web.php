@@ -80,10 +80,9 @@ Route::get('/mycart',[
 
 //add new products to the site
 Route::post('/addproduct',[
-    'uses'=>'MainController@postProduct',
+    'uses'=>'ProductController@postProduct',
     'as'=>'addProduct'
 ]);
-
 
 
 //shippingCalculate
@@ -92,14 +91,50 @@ Route::post('/shippingCalculate',[
     'as'=>'shippingCalculate'
 ]);
 
-Route::post('/test',[
-    'uses'=>'cartController@test',
-    'as'=>'test'
-]);
-
 
 Route::post('/search',[
     'uses'=>'ProductController@postSearch',
     'as'=>'search'
 ]);
 
+
+Route::get('/viewproduct',[
+    'uses'=>'ProductController@getViewProduct',
+    'as'=>'viewProduct'
+]);
+
+
+Route::post('/savefavourite',[
+    'uses'=>'ProductController@saveFavourite',
+    'as'=>'saveFavourite'
+]);
+
+Route::get('/viewfavourite',[
+    'uses'=>'ProductController@getFavourite',
+    'as'=>'viewFavourite'
+]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//test--------------------------------------
+
+Route::get('/test',[
+    'uses'=>'ProductController@getTest',
+    'as'=>'test'
+]);
+
+Route::get('/postTest',[
+    'uses'=>'ProductController@postTest',
+    'as'=>'postTest'
+]);
