@@ -6,13 +6,13 @@
         <h2 class="view-product-name alert-success">{{$message}}</h2>
     </div>
     <div class="col-sm-7">
-        <h1 class="view-product-name">{{$stock->productName}}</h1>
+        <h1>{{$stock->productName}}</h1>
     </div>
 
     <div class="col-sm-5 view-product-image-element">
-        <img class="view-product-image" src="images/{{$stock->image1Url}}">
+        <img class="view-product-image" src="images/product-images/front-images/{{$stock->image1Url}}">
         @if(($stock->image2Url)==!null)
-            <img class="hidden" src="images/{{$stock->image2Url}}">
+            <img class="hidden" src="images/product-images/back-images/{{$stock->image2Url}}">
         @endif
     </div>
 
@@ -23,8 +23,8 @@
 
         <p>Available Quantity : {{$stock->quantity}} </p>
 
-        <button>
-            <a href="{{route('sell')}}">Sell Another Product</a>
+        <button class="btn btn-primary">
+            <a href="{{route('sell')}}" style="color: white;">Sell Another Product</a>
         </button>
 
 

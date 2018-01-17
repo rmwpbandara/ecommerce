@@ -45,4 +45,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Favourite');
     }
 
+    public function subscribe(){
+            return $this->hasMany('App\subscribe');
+    }
+
 }

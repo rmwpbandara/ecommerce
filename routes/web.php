@@ -17,15 +17,6 @@
 
 Auth::routes();
 
-
-Route::get('/',[
-    'uses'=>'MainController@getHome',
-    'as'=>'home'
-]);
-
-Route::get('/home', 'HomeController@index');
-
-
 Route::get('/login',[
     'uses'=>'MainController@getLogin',
     'as'=>'login'
@@ -37,58 +28,45 @@ Route::get('/register',[
 ]);
 
 
-
-//get subscriptions content
-Route::get('/subscriptions',[
-    'uses'=>'MainController@getSubscriptions',
-    'as'=>'subscriptions'
+Route::get('/',[
+    'uses'=>'MainController@getHome',
+    'as'=>'home'
 ]);
 
-//get shop content
+Route::get('/home', 'HomeController@index');
+
 Route::get('/shop',[
     'uses'=>'MainController@getShop',
     'as'=>'shop'
 ]);
 
+Route::get('/subscriptions',[
+    'uses'=>'MainController@getSubscriptions',
+    'as'=>'subscriptions'
+]);
 
-//get myorders content
 Route::get('/myorders',[
     'uses'=>'MainController@getMyOrders',
     'as'=>'myorders'
 ]);
 
-//get sell content
 Route::get('/sell',[
     'uses'=>'MainController@getSell',
     'as'=>'sell'
 ]);
 
-//get myaccount content
 Route::get('/myaccount',[
     'uses'=>'MainController@getMyAccount',
     'as'=>'myaccount'
 ]);
-
-//cart page
+Route::post('/updateAccount',[
+    'uses'=>'AccountController@updateAccount',
+    'as'=>'updateAccount'
+]);
 
 Route::get('/mycart',[
     'uses'=>'CartController@getCart',
     'as'=>'mycart'
-]);
-
-
-
-//add new products to the site
-Route::post('/addproduct',[
-    'uses'=>'ProductController@postProduct',
-    'as'=>'addProduct'
-]);
-
-
-//shippingCalculate
-Route::post('/shippingCalculate',[
-    'uses'=>'cartController@postShippingCalculate',
-    'as'=>'shippingCalculate'
 ]);
 
 
@@ -97,6 +75,11 @@ Route::post('/search',[
     'as'=>'search'
 ]);
 
+
+Route::post('/addproduct',[
+    'uses'=>'ProductController@postProduct',
+    'as'=>'addProduct'
+]);
 
 Route::get('/viewproduct',[
     'uses'=>'ProductController@getViewProduct',
@@ -115,26 +98,29 @@ Route::get('/viewfavourite',[
 ]);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//test--------------------------------------
-
-Route::get('/test',[
-    'uses'=>'ProductController@getTest',
-    'as'=>'test'
+Route::post('/removeFavourite',[
+    'uses'=>'ProductController@removeFromFavourite',
+    'as'=>'removeFromFavourite'
 ]);
 
-Route::get('/postTest',[
-    'uses'=>'ProductController@postTest',
-    'as'=>'postTest'
+
+Route::post('/viewproductdetails',[
+    'uses'=>'ProductController@viewProductDetails',
+    'as'=>'viewProductDetails'
 ]);
+
+Route::post('/editProduct',[
+    'uses'=>'ProductController@editProduct',
+    'as'=>'editProduct'
+]);
+
+Route::post('/updateProduct',[
+    'uses'=>'ProductController@updateProduct',
+    'as'=>'updateProduct'
+]);
+
+Route::post('/saveSubscribe',[
+    'uses'=>'SellerController@sellerSubscribe',
+    'as'=>'subscribe'
+]);
+

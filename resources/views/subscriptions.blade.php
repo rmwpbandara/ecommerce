@@ -6,39 +6,32 @@
     $('.a-subscriptions').addClass('active');
 </script>
 
+@if(count($subscribes)>0)
 
-@foreach($users as $user)
-    <h3 class="subcriber-name">{{$user->name}}'s Products</h3>
-    <div class="responsive">
-        @foreach($stocks as $stock)
-            @if($user->id==$stock['user_id'])
-                <div class="col-sm-3 element-outline">
-                    <div class="product">
-                        <div class="image">
-                            <div class="">
-                                @foreach($types as $type)
-                                    @if($stock['type_id'] == $type->id)
-                                        <span>{{ $type->type }}</span>
-                                    @endif
-                                @endforeach
-                            </div>
-                            <img class="product-image" src="images/{{$stock['user_id']}}{{$stock['id']}}frontImage.jpg">
-                        </div>
-                        <div class="product-name">
-                            <span>{{ $stock['productName']}}</span>
-                        </div>
-                        <div class="product-price">
-                            <span>Rs.{{ $stock['price']}}/-</span>
-                        </div>
-                        <div class="cart-btn-area">
-                            <button class="btn-success cart-btn "><span class="cart-button"><i class="glyphicon glyphicon-shopping-cart"></i></span>Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            @endif
-        @endforeach
-    </div>
-@endforeach
+    @foreach($subscribes as $subscribe)
+        <div class="col-md-12">
+            <h3>Seller :{{$subscribe->name}}</h3>
+            <div class="responsive">
+                @foreach($stocks as $stock)
+                    @if($subscribe->subscribes_user_id==$stock->user_id)
+                        @include('elements.element')
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    @endforeach
+
+@else
+
+
+    <div style="padding-top: 150px; padding-left: 60px;">You do not Subscriptions Yet</div>
+
+
+@endif
+
+
+
+
 
 <script type="text/javascript" src="slick/slick.min.js"></script>
 

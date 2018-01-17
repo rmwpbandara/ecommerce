@@ -6,9 +6,9 @@ angular.module('anchoringExample', ['ngAnimate', 'ngRoute'])
       templateUrl: 'home.html',
       controller: 'HomeController as home'
     });
-    $routeProvider.when('/profile/:id', {
+    $routeProvider.when('/profile-pictures/:id', {
       templateUrl: 'profile.html',
-      controller: 'ProfileController as profile'
+      controller: 'ProfileController as profile-pictures'
     });
   }])
   .run(['$rootScope', function($rootScope) {

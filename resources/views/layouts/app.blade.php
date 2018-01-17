@@ -114,10 +114,11 @@
             <div class="main-menu menu">
                 <a href="http://localhost:8000/" class="links a-home"><span><i class="glyphicon glyphicon-home"></i></span><span class="list-name">Home</span></a>
                 <a href="http://localhost:8000/shop" class="links a-shop"><span><i class="glyphicon glyphicon-shopping-cart"></i></span><span class="list-name">All Products</span></a>
+                <a href="http://localhost:8000/viewfavourite" class="links a-favourite"><span><i class="glyphicon glyphicon-heart"></i></span><span class="list-name">Favourites</span></a>
                 <a href="http://localhost:8000/subscriptions" class="links a-subscriptions"><span><i class="glyphicon glyphicon-asterisk"></i></span><span class="list-name">subscriptions</span></a>
                 <a href="http://localhost:8000/myorders" class="links a-myorders"><span><i class="glyphicon glyphicon-paperclip"></i></span><span class="list-name">My Orders</span></a>
                 <a href="http://localhost:8000/sell" class="links a-sell"><span><i class="glyphicon glyphicon-open"></i></span><span class="list-name">Sell Products</span></a>
-                <a id="home" class="links"><span><i class="glyphicon glyphicon-wrench"></i></span><span class="list-name">My Account</span></a>
+                <a href="http://localhost:8000/myaccount" class="links a-myaccount"><span><i class="glyphicon glyphicon-wrench"></i></span><span class="list-name">My Account</span></a>
                 {{--<a id="sell" class="links"><span><i class="glyphicon glyphicon-open"></i></span><span class="list-name">Sell Products</span></a>--}}
                 <hr class="menu-section">
             </div>

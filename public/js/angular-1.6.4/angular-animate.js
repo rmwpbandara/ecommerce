@@ -3925,9 +3925,9 @@ var ngAnimateSwapDirective = ['$animate', '$rootScope', function($animate, $root
             templateUrl: 'home.html',
             controller: 'HomeController as home'
           });
-          $routeProvider.when('/profile/:id', {
-            templateUrl: 'profile.html',
-            controller: 'ProfileController as profile'
+          $routeProvider.when('/profile-pictures/:id', {
+            templateUrl: 'profile-pictures.html',
+            controller: 'ProfileController as profile-pictures'
           });
         }])
         .run(['$rootScope', function($rootScope) {
@@ -3960,15 +3960,15 @@ var ngAnimateSwapDirective = ['$animate', '$rootScope', function($animate, $root
       <h2>Welcome to the home page</h1>
       <p>Please click on an element</p>
       <a class="record"
-         ng-href="#!/profile/{{ record.id }}"
+         ng-href="#!/profile-pictures/{{ record.id }}"
          ng-animate-ref="{{ record.id }}"
          ng-repeat="record in records">
         {{ record.title }}
       </a>
     </file>
-    <file name="profile.html">
-      <div class="profile record" ng-animate-ref="{{ profile.id }}">
-        {{ profile.title }}
+    <file name="profile-pictures.html">
+      <div class="profile-pictures record" ng-animate-ref="{{ profile-pictures.id }}">
+        {{ profile-pictures.title }}
       </div>
     </file>
     <file name="animations.css">
@@ -3976,7 +3976,7 @@ var ngAnimateSwapDirective = ['$animate', '$rootScope', function($animate, $root
         display:block;
         font-size:20px;
       }
-      .profile {
+      .profile-pictures {
         background:black;
         color:white;
         font-size:100px;

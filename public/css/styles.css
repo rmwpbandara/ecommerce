@@ -567,3 +567,17 @@ body{
     height: 100px;
     width: auto;
 }
+
+.product-details-view{
+    margin: 20px;
+}
+
+.front-image-view,.back-image-view{
+
+    height: 200px;
+    width: 300px;
+}
+.front-image, .back-image{
+    max-height: 200px;
+    max-width: 300px;
+}

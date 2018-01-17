@@ -43,16 +43,16 @@ class CreateStocksTable extends Migration
             $table->foreign('favorite_id')->references('id')->on('types');
         });
 
-
-        DB::table('stocks')->insert([
-            'productName' => 'product01',
-            'description' => 'despt01',
-            'quantity' => '01',
-            'previousPrice' => '20',
-            'price' => '15',
-            'type_id' => '1',
-
-        ]);
+//
+//        DB::table('stocks')->insert([
+//            'productName' => 'product01',
+//            'description' => 'despt01',
+//            'quantity' => '01',
+//            'previousPrice' => '20',
+//            'price' => '15',
+//            'type_id' => '1',
+//
+//        ]);
 
     }
 

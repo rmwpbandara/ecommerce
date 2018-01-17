@@ -4,7 +4,7 @@
 
     <div class="main-content">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Cart</div>
                     <div class="panel-body">
@@ -15,8 +15,9 @@
                             {{ csrf_field() }}
 
                             <div class="col-sm-12 cart-top">
-                                <label class='col-sm-3 cart-product-name'>Product Name</label>
-                                <label class='col-sm-4 cart-product-quantity'>Product Quantity</label>
+                                <label class='col-sm-2 cart-product-name'>Product Image</label>
+                                <label class='col-sm-2 cart-product-name'>Product Name</label>
+                                <label class='col-sm-3 cart-product-quantity'>Product Quantity</label>
                                 <label class='col-sm-2 cart-product-price'>Unit Price</label>
                                 <label class='col-sm-2 cart-product-total'>Total</label>
                                 <label id="cart-product-delete" class='col-sm-1 cart-product-delete'>Delete</label>
