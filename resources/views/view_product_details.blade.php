@@ -36,15 +36,12 @@
                 <button id="add-to-cart-btn-{{$stock->id}}" title="Add to Cart " class="add-to-cart add-to-cart-btn"
 
                         data-auth-id="{{$authId}}"
-                        data-auth-country="{{$authCountry}}"
                         data-id="{{$stock->id}}"
                         data-name="{{$stock->productName}}"
                         data-product-id="{{$stock->id}}"
                         data-summary="{{$stock->description}}"
                         data-price="{{$stock->price}}"
                         data-quantity="{{ $stock->quantity}}"
-                        data-shipping-local="{{ $stock->shippingLocal}}"
-                        data-shipping-international="{{ $stock->shippingInternational}}"
                         data-seller-id="{{$stock->user_id}}"
                         data-seller-country="{{$stock->seller_country}}"
                         data-image="{{$stock->image1Url}}">

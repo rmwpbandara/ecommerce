@@ -21,7 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('address')->nullable();
             $table->string('contactNo')->nullable();
-//            $table->string('description')->nullable();
+            $table->string('shipping_name')->nullable();
+            $table->string('shipping_address')->nullable();
+            $table->string('shipping_country')->nullable();
+
+            $table->string('shippingLocal')->nullable();
+            $table->string('shippingInternational')->nullable();
+
             $table->string('reputation')->nullable();
 
             $table->rememberToken();

@@ -25,14 +25,17 @@ class MainController extends Controller
             ->select('stocks.*', 'users.name as seller_name', 'users.country', 'users.email as seller_email','type')
             ->orderBy('id', 'desc')->take(20)->get();
 
+//        dd($recentStocks);
+
+
         if (Auth::check()) {
             $authCountry = Auth::user()->country;
             $authId = Auth::id();
             $favourites = DB::table('favourites')->where('user_id', $authId)->pluck('stock_id')->toArray();
 
-            return view('home')->with(['tags'=>$tags,'recentStocks'=>$recentStocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry,'favourites'=>$favourites]);
+            return view('home')->with(['tags'=>$tags,'recentStocks'=>$recentStocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry,'favourites'=>$favourites,'pageName'=>'home']);
         }
-        return view('home')->with(['tags'=>$tags,'recentStocks'=>$recentStocks, 'types'=>$types,'authId'=>0,'authCountry'=>'null','favourites'=>[]]);
+        return view('home')->with(['tags'=>$tags,'recentStocks'=>$recentStocks, 'types'=>$types,'authId'=>0,'authCountry'=>'null','favourites'=>[],'pageName'=>'home']);
 
     }
 
@@ -58,17 +61,15 @@ class MainController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-//        dd($stocks);
-
         if (Auth::check()) {
 
             $authCountry = Auth::user()->country;
             $authId = Auth::id();
             $favourites = DB::table('favourites')->where('user_id', $authId)->pluck('stock_id')->toArray();
 
-            return view('shop')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry,'favourites'=>$favourites]);
+            return view('shop')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry,'favourites'=>$favourites,'pageName'=>'shop']);
         }
-        return view('shop')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>0,'authCountry'=>'null','favourites'=>[]]);
+        return view('shop')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>0,'authCountry'=>'null','favourites'=>[],'pageName'=>'shop']);
     }
 
     public function getSubscriptions(){
@@ -90,7 +91,7 @@ class MainController extends Controller
                 ->leftJoin('users', 'users.id', '=', 'subscribes.subscribes_user_id')
                 ->get();
 
-            return view('subscriptions')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry,'favourites'=>$favourites,'subscribes'=>$subscribes]);
+            return view('subscriptions')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry,'favourites'=>$favourites,'subscribes'=>$subscribes,'pageName'=>'subscriptions']);
         }
         return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
     }
@@ -122,12 +123,16 @@ class MainController extends Controller
         $types = Type::all();
         $user = DB::table('users')->select('*')->where('id', $authId)->get()->first();
 
+//        dd($user);
+
         $stocks = DB::table('stocks')
             ->leftJoin('users', 'stocks.user_id', '=', 'users.id')
             ->leftJoin('types', 'stocks.type_id', '=', 'types.id')
             ->select('stocks.*', 'users.name as seller_name', 'users.country', 'users.email as seller_email', 'type')
             ->get()
             ->where('user_id', $authId);
+
+//        dd($stocks);
 
         if (Auth::check()) {
             return view('my_acount')->with(['tags'=>$tags,'types'=>$types,'authId'=>$authId,'user'=>$user,'stocks'=>$stocks]);

@@ -46,4 +46,6 @@ class SellerController extends Controller
         return response('success');
 
     }
+
+
 }

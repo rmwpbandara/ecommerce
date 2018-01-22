@@ -14,22 +14,52 @@ use Illuminate\Support\Facades\DB;
 
 class Shipping{
 
-    public static function getShipping($productId){
+    public static function shippingCost($productIds){
 
-        $authUserCountry = Auth::user()->country;
-        $productOwnerUserId = DB::table('stocks')->where('id',$productId)->value('user_id');
-        $productOwnerCountry = DB::table('users')->where('id',$productOwnerUserId)->value('country');
+        $shippingCost = 0;
+        $authId = Auth::id();
+        $authUser = DB::table('users')->where('id',$authId)->get()->first();
 
-        if($authUserCountry==$productOwnerCountry){
+        $sellerId = [];
 
-            $shippingCost = DB::table('stocks')->where('id',$productId)->value('shippingLocal');
-            return $shippingCost;
+        foreach($productIds as $productId){
+
+            $seller = DB::table('stocks')->join('users', 'users.id','=','stocks.user_id')->where('stocks.id',$productId)->get()->first();
+
+//            foreach($sellerId as $id){
+//                if($id==$seller->id){
+//
+//                }
+//
+//                else{
+                    $sellerId[] = $seller->id;
+//                }
+//            }
+//
+            if($authUser->shipping_country==$seller->country){
+                $shippingCost = $shippingCost+$seller->shippingLocal;
+            }
+            else{
+                $shippingCost = $shippingCost+$seller->shippingInternational;
+            }
 
         }
-        else{
-            $shippingCost = DB::table('stocks')->where('id',$productId)->value('shippingInternational');
-            return $shippingCost;
-        }
+
+        dd($sellerId);
+
+        dd($shippingCost);
+
+
+        return $shippingCost;
+
+
+
+//        dd($authUser->shipping_country,$seller->country,$seller->shippingLocal);
+
+
+
+
+
 
     }
 }

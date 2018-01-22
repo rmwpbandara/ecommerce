@@ -16,35 +16,10 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
 
-    public function postProduct(Request $request)
-    {
+    public function saveShippingCost(Request $request){
 
-        $authId = Auth::id();   //get auth user id
-        $ProductId = DB::table('Stocks')->find(DB::table('Stocks')->max('id'))->id + 1; //load database last id and + 1
-
-        $productName = $request->name;
-        $productDescription = $request->description;
-        $quantity = $request->quantity;
-        $previousPrice = $request->previousPrice;
-        $price = $request->price;
-        $productType = $request->productType;
         $shippingLocal = $request->shippingLocal;
         $shippingInternational = $request->shippingInternational;
-
-        //create front image name with auth id+product id + image name and request image
-        $fileNameFrontImage = $authId . $ProductId . 'frontImage' . '.jpg';
-        $frontImage = $request->frontImage;
-        if (!empty($frontImage)) {
-            $frontImage->move('images/product-images/front-images', $fileNameFrontImage);    //store image to 'images' folder in public folder
-        }
-        //create back image name with auth id+product id + image name and request image
-        $backImage = $request->backImage;
-        $fileNameBackImage = $authId . $ProductId . 'backImage' . '.jpg';
-        if (!empty($backImage)) {
-            $backImage->move('images/product-images/back-images', $fileNameBackImage);      //store image to 'images' folder in public folder
-        } else {
-            $fileNameBackImage = null;
-        }
 
         if ($shippingLocal == null) {
             $shippingLocal = 0;
@@ -58,14 +33,76 @@ class ProductController extends Controller
             $shippingInternational = $request->shippingInternational;
         }
 
+
+        if ($shippingLocal == null) {
+            DB::table('users')->where('id',Auth::id())->update(['shippingLocal' => 0]);
+        } else {
+            DB::table('users')->where('id',Auth::id())->update(['shippingLocal' => $shippingLocal]);
+        }
+
+        if ($shippingInternational == null) {
+            DB::table('users')->where('id',Auth::id())->update(['shippingInternational' => 0]);
+        } else {
+            DB::table('users')->where('id',Auth::id())->update(['shippingInternational' => $shippingInternational]);
+        }
+
+
+//
+//        if(!empty($shippingLocal)){
+//            DB::table('users')->where('id',Auth::id() )->update(['shippingLocal' => $shippingLocal]);
+//        }
+//
+//        if(!empty($shippingInternational)){
+//            DB::table('users')->where('id',Auth::id() )->update(['shippingInternational' => $shippingInternational]);
+//        }
+
+        return redirect()->back();
+
+    }
+
+    public function postProduct(Request $request)
+    {
+
+        $authId = Auth::id();   //get auth user id
+        $stocksTable = DB::table('Stocks')->get(); //load database last id and + 1
+
+        if(count($stocksTable)>0){
+            $productId = DB::table('Stocks')->find(DB::table('Stocks')->max('id'))->id + 1; //load database last id and + 1
+        }else{
+            $productId=1;
+        }
+
+        $productName = $request->name;
+        $productDescription = $request->description;
+        $quantity = $request->quantity;
+        $previousPrice = $request->previousPrice;
+        $price = $request->price;
+        $productType = $request->productType;
+
+
+        //create front image name with auth id+product id + image name and request image
+        $fileNameFrontImage = $authId . $productId . 'frontImage' . '.jpg';
+        $frontImage = $request->frontImage;
+        if (!empty($frontImage)) {
+            $frontImage->move('images/product-images/front-images', $fileNameFrontImage);    //store image to 'images' folder in public folder
+        }
+        //create back image name with auth id+product id + image name and request image
+        $backImage = $request->backImage;
+        $fileNameBackImage = $authId . $productId . 'backImage' . '.jpg';
+        if (!empty($backImage)) {
+            $backImage->move('images/product-images/back-images', $fileNameBackImage);      //store image to 'images' folder in public folder
+        } else {
+            $fileNameBackImage = null;
+        }
+
+
+
         $stock = new Stock();                           //create new object Stock
         $stock->productName = $productName;
         $stock->description = $productDescription;
         $stock->quantity = $quantity;
         $stock->previousPrice = $previousPrice;
         $stock->price = $price;
-        $stock->shippingLocal = $shippingLocal;
-        $stock->shippingInternational = $shippingInternational;
         $stock->image1Url = $fileNameFrontImage;
         $stock->image2Url = $fileNameBackImage;
         $stock->type_id = $productType;
@@ -81,12 +118,12 @@ class ProductController extends Controller
             foreach ($tags as $tagStatesId => $tagId) {
                 $tagging = new Tagging();
                 $tagging->tag_id = $tagId;
-                $tagging->stock_id = $ProductId;          //use product id to save tagging table product id column
+                $tagging->stock_id = $productId;          //use product id to save tagging table product id column
                 $tagging->save();
             }
         endif;
 
-        return redirect()->route('viewProduct', ['productId' => $ProductId, 'message' => $message]);
+        return redirect()->route('viewProduct', ['productId' => $productId, 'message' => $message]);
     }
 
     public function postSearch(Request $request)
@@ -138,6 +175,7 @@ class ProductController extends Controller
         $message = $request->message;
         $tags = Tag::all();
         $types = Type::all();
+
         $stock = DB::table('stocks')
             ->leftJoin('users', 'stocks.user_id', '=', 'users.id')
             ->leftJoin('types', 'stocks.type_id', '=', 'types.id')
@@ -197,8 +235,10 @@ class ProductController extends Controller
                 ->leftJoin('favourites', 'favourites.stock_id', '=', 'stocks.id')
                 ->select('stocks.*', 'users.name as seller_name', 'users.country', 'users.email as seller_email','type','favourites.user_id as favourite_user_id')
                 ->get()->where('favourite_user_id', '=', $authId);
+            $favourites = DB::table('favourites')->where('user_id', $authId)->pluck('stock_id')->toArray();
 
-            return view('favourite')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry]);
+
+            return view('favourite')->with(['tags'=>$tags,'stocks'=>$stocks, 'types'=>$types,'authId'=>$authId,'authCountry'=>$authCountry,'favourites'=>$favourites,'pageName'=>'favourite']);
         }
 
         return view('auth.login')->with(['tags'=>$tags,'types'=>$types]);
@@ -271,8 +311,8 @@ class ProductController extends Controller
         $price = $request->price;
         $quantity = $request->quantity;
         $previousPrice = $request->previousPrice;
-        $shippingLocal = $request->shippingLocal;
-        $shippingInternational = $request->shippingInternational;
+//        $shippingLocal = $request->shippingLocal;
+//        $shippingInternational = $request->shippingInternational;
         $frontImage = $request->frontImage;
         $backImage = $request->backImage;
 
@@ -305,17 +345,7 @@ class ProductController extends Controller
             $backImage->move('images/product-images/back-images', $fileNameBackImage);
         }
 
-        if ($shippingLocal == null) {
-            DB::table('stocks')->where('id',$productId)->update(['shippingLocal' => 0]);
-        } else {
-            DB::table('stocks')->where('id',$productId)->update(['shippingLocal' => $shippingLocal]);
-        }
 
-        if ($shippingInternational == null) {
-            DB::table('stocks')->where('id',$productId)->update(['shippingInternational' => 0]);
-        } else {
-            DB::table('stocks')->where('id',$productId)->update(['shippingInternational' => $shippingInternational]);
-        }
 
         $message = 'success';
 

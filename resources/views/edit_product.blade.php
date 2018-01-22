@@ -74,33 +74,6 @@
                                     @endif
                                 </div>
                             </div>
-                            {{--product shipping--}}
-                            <div class="form-group">
-                                <label for="Shipping Local" class="col-md-4 control-label">Local Shipping Cost</label>
-                                {{--@if({{$stock->shippingLocal}})--}}
-                                <div class="col-md-3">
-                                    <label class="shipping-checkbox">Free Shipping
-                                        <input id="local-shipping-checkbox" type="checkbox" {{empty($stock->shippingLocal)? 'checked="checked"' : '' }} name="local-shipping-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="col-md-3">
-                                    <input id="shippingLocal"  type="number" placeholder="Shipping price" class="form-control" name="shippingLocal" {{empty($stock->shippingLocal)? 'disabled ' : 'value='.$stock->shippingLocal }} >
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Shipping International" class="col-md-4 control-label">International Shipping Cost </label>
-                                <div class="col-md-3">
-                                    <label class="shipping-checkbox">Free Shipping
-                                        <input id="international-shipping-checkbox" type="checkbox" {{empty($stock->shippingInternational)? 'checked="checked"' : '' }}>
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="col-md-3">
-                                    <input id="shippingInternational" type="number" placeholder="Shipping price" class="form-control" name="shippingInternational" {{empty($stock->shippingInternational)? 'disabled ' : 'value='.$stock->shippingInternational }} >
-                                </div>
-                            </div>
                             {{--product image_01--}}
                             <div class="form-group{{ $errors->has('frontImage') ? ' has-error' : '' }}">
                                 <label for="image_01" class="col-md-2 control-label">

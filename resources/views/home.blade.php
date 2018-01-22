@@ -12,22 +12,14 @@
     <span class="page-heading">Recent Products</span>
         <div class="responsive">
             @foreach($recentStocks as $stock)
-                @include('elements.element')
+                @if($stock->user_id!=$authId)
+                    @include('elements.element')
+                @endif
             @endforeach
         </div>
         @else
         @include('elements.no_results')
     @endif
-
-    {{--<span class="page-heading">Popular Products</span>--}}
-    {{--<div class="responsive">--}}
-        {{--@foreach($stocks as $stock)--}}
-            {{--@include('elements.element')--}}
-        {{--@endforeach--}}
-
-    {{--</div>--}}
-
-
 
 
     <script type="text/javascript" src="slick/slick.min.js"></script>

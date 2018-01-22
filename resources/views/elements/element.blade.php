@@ -25,15 +25,11 @@
                                 class="add-to-cart add-to-cart-btn"
 
                                 data-auth-id="{{$authId}}"
-                                data-auth-country="{{$authCountry}}"
                                 data-id="{{$stock->id}}"
                                 data-name="{{$stock->productName}}"
                                 data-product-id="{{$stock->id}}"
-                                data-summary="{{$stock->description}}"
                                 data-price="{{$stock->price}}"
                                 data-quantity="{{ $stock->quantity}}"
-                                data-shipping-local="{{ $stock->shippingLocal}}"
-                                data-shipping-international="{{ $stock->shippingInternational}}"
                                 data-seller-id="{{$stock->user_id}}"
                                 data-seller-country="{{$stock->country}}"
                                 data-image="{{$stock->image1Url}}">
@@ -43,12 +39,25 @@
                         </button>
                     </span>
 
+
+
+
                 @if(in_array($stock->id,$favourites))
-                    <button id="favouriteBtn{{$stock->id}}" onclick="viewFavourite()" title="View Favorite"
-                            class="add-to-favorite-btn" data-auth-id="{{$authId}}" data-product-id="{{$stock->id}}">
-                        <i class="glyphicon glyphicon-heart favorite-icon"></i>
-                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                    </button>
+                    @if($pageName=='favourite')
+
+                        <button id="favouriteBtn{{$stock->id}}" onclick="removeFromFavourite(this)"
+                                title="Remove From Favourite" class="add-to-favorite-btn" data-auth-id="{{$authId}}"
+                                data-product-id="{{$stock->id}}">
+                            <i class="glyphicon glyphicon-remove favorite-icon-remove"></i>
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                        </button>
+                    @else
+                        <button id="favouriteBtn{{$stock->id}}" onclick="viewFavourite()" title="View Favorite"
+                                class="add-to-favorite-btn" data-auth-id="{{$authId}}" data-product-id="{{$stock->id}}">
+                            <i class="glyphicon glyphicon-heart favorite-icon"></i>
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                        </button>
+                    @endif
                 @else
                     <button id="favouriteBtn{{$stock->id}}" onclick="addToFavourite(this)" title="Add to Favorite"
                             class="add-to-favorite-btn" data-auth-id="{{$authId}}" data-product-id="{{$stock->id}}">

@@ -67,71 +67,8 @@ $(function () {
     });
 });
 
-
-
 ///////////////////////////--------cart-----------------/////////////////////////
 
-
-
-//-------------------------------------------------------------------------add to cart
-$(".add-to-cart").click(function (event) {
-    event.preventDefault();
-    var authId = $(this).attr("data-auth-id");
-    var cartArray = shoppingCart.listCart();
-
-    //alert(authId);
-    var shippingCost = 0;
-    var sameSeller = 0;
-
-    if (authId == 0) {
-        window.location = "/login";
-    }
-    else {
-        var name = $(this).attr("data-name");
-        var price = Number($(this).attr("data-price"));
-        var productId = Number($(this).attr("data-product-id"));
-        var authCountry = $(this).attr("data-auth-country");
-        var sellerCountry = $(this).attr("data-seller-country");
-        var imageUrl = $(this).attr("data-image");
-        var sellerId = $(this).attr("data-seller-id");
-
-        for(var i in cartArray){
-            if(cartArray[i].sellerId==sellerId){
-                sameSeller =1;
-                //alert(sameSeller);
-            }
-        }
-
-        if ((authCountry == sellerCountry)&&(sameSeller==0)) {
-            var localShippingCost = $(this).attr("data-shipping-local");
-            shippingCost = localShippingCost;
-
-            //alert('local cost:'+shippingCost);
-        }
-        else if(sameSeller==0){
-            var internationalShippingCost = $(this).attr("data-shipping-international");
-            shippingCost = internationalShippingCost;
-            //alert('international cost:'+shippingCost);
-        }
-
-        var element = $(this).closest('span');
-        var productOrderQty = Number(element.children('input').attr('value'));
-
-        if (productOrderQty == null || productOrderQty == undefined || productOrderQty == 0) {
-            alert("Enter Quantity . .");
-        }
-
-        else {
-            shoppingCart.addItemToCart(name, price, productOrderQty, productId, shippingCost,imageUrl,sellerId);
-            displayCart();
-
-            //console.log(element);
-            changeBtnCart(element);
-            $(this).remove();
-        }
-    }
-    //console.log("addItemToCart:", name, price, productId,shippingCost);
-});
 
 //-------------------------------------------------------------------------change quantity onchange
 $('.item-qty').bind('keyup change', function () {
@@ -159,35 +96,6 @@ $("#clear-cart").click(function (event) {
     displayCart();
     //clearData();
 });
-
-//-------------------------------------------------------------------------display cart
-function displayCart() {
-    var cartArray = shoppingCart.listCart();
-    var output = "";
-    for (var i in cartArray) {
-        output += "<span class='col-md-12'><span class='col-sm-2'><img style='max-height: 50px;max-width: 60px;' src='images/product-images/front-images/"+ cartArray[i].imageUrl+"'></span>"
-            +"<span class='col-sm-2 cart-product-name'>" + cartArray[i].name + "</span>"
-            + " <input class='item-count col-sm-1' type='number' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "' >"
-            + " <button class='plus-item col-sm-1' data-name='" + cartArray[i].name + "'><i class='glyphicon glyphicon-plus-sign'></i></button>"
-            + " <button class='subtract-item col-sm-1' data-name='" + cartArray[i].name + "'><i class='glyphicon glyphicon-minus-sign'></i></button>"
-            + " <span class='col-sm-2 cart-product-price'> " + cartArray[i].price + "</span>"
-            + "<span class='col-sm-2 cart-product-total'>" + cartArray[i].total + "</span>"
-            + " <button class='delete-item col-sm-1 cart-product-delete' data-product-id='" + cartArray[i].productId + "' data-name='" + cartArray[i].name + "'><i class='glyphicon glyphicon-remove-sign'></i></button></span>";
-    }
-
-    $(".item-qty").html(shoppingCart.countCart());
-    $("#show-cart").html(output);
-    $("#count-cart").html(shoppingCart.countCart());
-    $("#total-cart").html(shoppingCart.totalCart());
-
-    //shipping calculate
-    var totalCart = Math.floor(shoppingCart.totalCart());
-    var totalShippingCost = Math.floor(shoppingCart.totalCartShipping());
-    var orderTotal = totalCart + totalShippingCost;
-
-    $("#shipping-value").html(totalShippingCost.toFixed(2));
-    $("#order-total").html(orderTotal.toFixed(2));
-}
 
 //-------------------------------------------------------------------------delete cart item
 $("#show-cart").on("click", ".delete-item", function (event) {
@@ -218,7 +126,133 @@ $("#show-cart").on("change", ".item-count", function (event) {
     displayCart();
 });
 
+
+//-------------------------------------------------------------------------add to cart
+
+$(".add-to-cart").click(function (event) {
+    event.preventDefault();
+    var authId = $(this).attr("data-auth-id");
+    var shippingCost = 0;
+    if (authId == 0) {
+        window.location = "/login";
+    }
+    else {
+        var name = $(this).attr("data-name");
+        var price = Number($(this).attr("data-price"));
+        var productId = Number($(this).attr("data-product-id"));
+        var sellerCountry = $(this).attr("data-seller-country");
+        var imageUrl = $(this).attr("data-image");
+        var sellerId = $(this).attr("data-seller-id");
+
+        //for(var i in cartArray){
+        //    if(cartArray[i].sellerId==sellerId){
+        //        sameSeller =1;
+        //        alert(sameSeller);
+        //    }
+        //}
+        //
+        //if ((authCountry == sellerCountry)&&(sameSeller==0)) {
+        //    var localShippingCost = $(this).attr("data-shipping-local");
+        //    shippingCost = localShippingCost;
+        //
+        //    //alert('local cost:'+shippingCost);
+        //}
+        //else if(sameSeller==0){
+        //    var internationalShippingCost = $(this).attr("data-shipping-international");
+        //    shippingCost = internationalShippingCost;
+        //    //alert('international cost:'+shippingCost);
+        //}
+
+        var element = $(this).closest('span');
+        var productOrderQty = Number(element.children('input').attr('value'));
+
+        if (productOrderQty == null || productOrderQty == undefined || productOrderQty == 0) {
+            alert("Enter Quantity . .");
+        }
+
+        else {
+            shoppingCart.addItemToCart(name, price, productOrderQty, productId, shippingCost,imageUrl,sellerId,sellerCountry);
+            displayCart();
+
+            //console.log(element);
+            changeBtnCart(element);
+            $(this).remove();
+        }
+    }
+    //console.log("addItemToCart:", name, price, productId,shippingCost);
+});
+
+
+
+//-------------------------------------------------------------------------display cart
+function displayCart() {
+    var cartArray = shoppingCart.listCart();
+    var output = "";
+    for (var i in cartArray) {
+
+        output += "<tr>"+
+            "<td>"+
+                "<img height='50' src='images/product-images/front-images/"+ cartArray[i].imageUrl+"'>" +
+            "</td>"+
+            "<td class='cart-product-name'>" + cartArray[i].name + "</td>"+
+            "<td class='col-xs-1'>" +
+                "<input class='item-count form-control input-sm' type='number' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "' >" +
+            "</td>"+
+            "<td>"+
+                "<button class='plus-item btn btn-primary btn-xs' data-name='" + cartArray[i].name + "'>" +
+                    "<span class='glyphicon glyphicon-plus-sign'></span>" +
+                "</button>"+
+                "<button class='subtract-item btn btn-primary btn-xs' data-name='" + cartArray[i].name + "'>" +
+                    "<span class='glyphicon glyphicon-minus-sign'></span>" +
+                "</button>"+
+            "</td>"+
+            "<td class='cart-product-price'> " + cartArray[i].price + "</td>"+
+            "<td class='cart-product-total'>" + cartArray[i].total + "</td>"+
+            "<td>"+
+                "<button class='delete-item cart-product-delete btn btn-danger btn-xs' data-product-id='" + cartArray[i].productId + "' data-name='" + cartArray[i].name + "'>" +
+                    "<span class='glyphicon glyphicon-trash'></span>" +
+                "</button>" +
+            "</td>"+
+                "<input type='hidden' name='productId["+[i]+"]' value='"+cartArray[i].productId+"'>"+
+                "<input type='hidden' name='productQty["+[i]+"]' value='"+cartArray[i].count+"'>"+
+            "</tr>";
+    }
+
+    $(".item-qty").html(shoppingCart.countCart());
+    $("#show-cart").html(output);
+    $("#count-cart").html(shoppingCart.countCart());
+    $("#total-cart").html(shoppingCart.totalCart());
+
+    //var shippingCost=shippingCost();
+
+
+
+    //shipping calculate
+    var totalCart = Math.floor(shoppingCart.totalCart());
+    var totalShippingCost = Math.floor(shoppingCart.totalCartShipping());
+    var orderTotal = totalCart + totalShippingCost;
+
+    //$("#shipping-value").html(totalShippingCost.toFixed(2));
+    $("#order-total").html(orderTotal.toFixed(2));
+}
+
 displayCart();
+
+
+shippingCost();
+
+function shippingCost(){
+
+    var cartArray = shoppingCart.listCart();
+    var productIds = [];
+
+    for(var i in cartArray){
+        productIds[i] = cartArray[i].productId;
+    }
+
+    console.log(productIds);
+
+}
 
 
 //////////////////////////////---------favourite----------//////////////////////////////

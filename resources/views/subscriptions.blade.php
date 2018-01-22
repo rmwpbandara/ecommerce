@@ -7,7 +7,6 @@
 </script>
 
 @if(count($subscribes)>0)
-
     @foreach($subscribes as $subscribe)
         <div class="col-md-12">
             <h3>Seller :{{$subscribe->name}}</h3>
@@ -20,21 +19,11 @@
             </div>
         </div>
     @endforeach
-
 @else
-
-
-    <div style="padding-top: 150px; padding-left: 60px;">You do not Subscriptions Yet</div>
-
-
+    @include('elements.no_results')
 @endif
 
-
-
-
-
 <script type="text/javascript" src="slick/slick.min.js"></script>
-
 <script type="text/javascript">
     $('.responsive').slick({
         dots: false,

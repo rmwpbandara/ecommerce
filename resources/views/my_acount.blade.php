@@ -42,7 +42,7 @@
                 <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab">
                     <span class="	glyphicon glyphicon-transfer" aria-hidden="true"></span>
 
-                    <div class="hidden-xs">Pending Shipping</div>
+                    <div class="hidden-xs">Shipping Cost</div>
                 </button>
             </div>
 
@@ -79,7 +79,6 @@
                                            value="{{$user->name}}">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="email" class="col-md-4 control-label">E-Mail</label>
 
@@ -88,7 +87,6 @@
                                            value="{{$user->email}}">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="Address" class="col-md-4 control-label">Address</label>
 
@@ -97,7 +95,6 @@
                                            value="{{$user->address}}">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="country" class="col-md-4 control-label">Country</label>
 
@@ -106,7 +103,6 @@
                                            value="{{$user->country}}">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="Address" class="col-md-4 control-label">Contact Number</label>
 
@@ -115,7 +111,6 @@
                                            value="{{$user->contactNo}}">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="image_01" class="col-md-4 control-label">Change Profile Picture</label>
 
@@ -125,7 +120,6 @@
                                 </div>
 
                             </div>
-
                             <div class="form-group">
                                 <label for="image_01" class="col-md-4 control-label">Change Cover Photo</label>
 
@@ -133,11 +127,35 @@
                                     <input id="frontImage" class="image" type="file" name="coverPhoto" accept="image/*">
                                 </div>
                             </div>
+                            {{--shipping --}}
+                            <div class="form-group">
+                                <label for="change password" class="col-md-6 control-label">Shipping Details</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping_name" class="col-md-4 control-label">Shipping Name</label>
+                                <div class="col-md-6">
+                                    <input id="shipping_name" type="text" class="form-control" name="shipping_name" value="{{$user->shipping_name}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping_Address" class="col-md-4 control-label">Shipping Address</label>
 
+                                <div class="col-md-6">
+                                    <input id="shipping_address" type="text" class="form-control" name="shipping_address"
+                                           value="{{$user->shipping_address}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="shipping_country" class="col-md-4 control-label">Shipping Country</label>
+
+                                <div class="col-md-6">
+                                    <input id="shipping_country_selector" class="form-control" type="text" name="shipping_country" value="{{$user->shipping_country}}">
+                                </div>
+                            </div>
+                            {{--password change--}}
                             <div class="form-group">
                                 <label for="change password" class="col-md-6 control-label">Change Password</label>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-md-4 control-label"></div>
                                 @if (count($errors) > 0)
@@ -150,7 +168,6 @@
                                     </div>
                                 @endif
                             </div>
-
                             <div class="form-group">
                                 <label for="old_password" class="col-md-4 control-label">Current Password</label>
 
@@ -158,7 +175,6 @@
                                     <input id="old_password" type="password" class="form-control" name="old_password">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="password" class="col-md-4 control-label">New Password</label>
 
@@ -166,7 +182,6 @@
                                     <input id="newPassword" type="password" class="form-control" name="new_password">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
@@ -175,7 +190,7 @@
                                            name="confirm_password">
                                 </div>
                             </div>
-
+                            {{--save button--}}
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">Save</button>
@@ -216,8 +231,8 @@
                                         <label for="" class="col-md-1">{{$stock->price}}</label>
                                         <label for="" class="col-md-1">{{$stock->quantity}}</label>
 
-                                        <label for="" class="col-md-1">{{$stock->shippingLocal}}</label>
-                                        <label for="" class="col-md-1">{{$stock->shippingInternational}}</label>
+                                        <label for="" class="col-md-1"></label>
+                                        <label for="" class="col-md-1"></label>
 
                                         <label for="" class="col-md-1"></label>
                                         <label for="" class="col-md-1"></label>
@@ -233,9 +248,53 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
                 <div class="tab-pane fade in" id="tab3">
-                    <h3>This is tab 3</h3>
+
+                    <form class="form-horizontal" role="form" action="{{route('saveShippingCost')}}" method="post"
+                          enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="panel-body">
+
+                            {{--product shipping--}}
+                            <div class="form-group">
+                                <label for="Shipping Local" class="col-md-4 control-label">Local Shipping Cost</label>
+                                {{--@if({{$stock->shippingLocal}})--}}
+                                <div class="col-md-3">
+                                    <label class="shipping-checkbox">Free Shipping
+                                        <input id="local-shipping-checkbox" type="checkbox" {{empty($user->shippingLocal)? 'checked="checked"' : '' }} name="local-shipping-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input id="shippingLocal"  type="number" placeholder="Shipping price" class="form-control" name="shippingLocal" {{empty($user->shippingLocal)? 'disabled ' : 'value='.$user->shippingLocal }} >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Shipping International" class="col-md-4 control-label">International Shipping Cost </label>
+                                <div class="col-md-3">
+                                    <label class="shipping-checkbox">Free Shipping
+                                        <input id="international-shipping-checkbox" type="checkbox" {{empty($user->shippingInternational)? 'checked="checked"' : '' }}>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input id="shippingInternational" type="number" placeholder="Shipping price" class="form-control" name="shippingInternational" {{empty($user->shippingInternational)? 'disabled ' : 'value='.$user->shippingInternational }} >
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary pull-right"> Submit </button>
+                        </div>
+                    </form>
                 </div>
+
+
                 <div class="tab-pane fade in" id="tab4">
                     <h3>This is tab 4</h3>
                 </div>
@@ -251,6 +310,14 @@
 
     <script>
         $("#country_selector").countrySelect({
+            {{--defaultCountry: "{{$user->email}}",--}}
+            //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+            preferredCountries: ['lk', 'us', 'gb']
+        });
+    </script>
+
+    <script>
+        $("#shipping_country_selector").countrySelect({
             {{--defaultCountry: "{{$user->email}}",--}}
             //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
             preferredCountries: ['lk', 'us', 'gb']

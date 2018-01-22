@@ -17,12 +17,19 @@ class AccountController extends Controller
         $address = $request->address;
         $country = $request->country;
         $contactNo = $request->contactNo;
+
+        $shipping_name = $request->shipping_name;
+        $shipping_address = $request->shipping_address;
+        $shipping_country = $request->shipping_country;
+
         $old_password = $request->old_password;
         $new_password = $request->new_password;
         $confirm_password = $request->confirm_password;
 
         $profilePicture = $request->profilePicture;
         $coverPhoto = $request->coverPhoto;
+//
+//        dd($request->all());
 
         if(!empty($name)){
             DB::table('users')->where('id',Auth::id() )->update(['name' => $name]);
@@ -39,6 +46,19 @@ class AccountController extends Controller
         if(!empty($contactNo)){
             DB::table('users')->where('id',Auth::id() )->update(['contactNo' => $contactNo]);
         }
+
+
+        if(!empty($shipping_name)){
+            DB::table('users')->where('id',Auth::id() )->update(['shipping_name' => $shipping_name]);
+        }
+        if(!empty($shipping_address)){
+            DB::table('users')->where('id',Auth::id() )->update(['shipping_address' => $shipping_address]);
+        }
+        if(!empty($shipping_country)){
+            DB::table('users')->where('id',Auth::id() )->update(['shipping_country' => $shipping_country]);
+        }
+
+
         if(!empty($old_password||$new_password||$confirm_password)){
             $data = $request->all();
             $user = User::find(auth()->user()->id);

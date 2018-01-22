@@ -5,7 +5,7 @@ var shoppingCart = (function () {
     // Private methods and properties
     var cart = [];
 
-    function Item(name, price, count,productId,shippingCost,imageUrl,sellerId) {
+    function Item(name, price, count,productId,shippingCost,imageUrl,sellerId,sellerCountry) {
         this.name = name
         this.price = price
         this.count = count
@@ -13,6 +13,7 @@ var shoppingCart = (function () {
         this.shippingCost = shippingCost
         this.imageUrl = imageUrl
         this.sellerId = sellerId
+        this.sellerCountry = sellerCountry
     }
 
     function saveCart() {
@@ -33,7 +34,7 @@ var shoppingCart = (function () {
     // Public methods and properties
     var obj = {};
 
-    obj.addItemToCart = function (name, price, count, productId,shippingCost,imageUrl,sellerId) {
+    obj.addItemToCart = function (name, price, count, productId,shippingCost,imageUrl,sellerId,sellerCountry) {
         for (var i in cart) {
             if (cart[i].name === name) {
                 cart[i].count += count;
@@ -42,9 +43,9 @@ var shoppingCart = (function () {
             }
         }
 
-        console.log("addItemToCart:", name, price, count, productId,shippingCost,imageUrl,sellerId);
+        console.log("addItemToCart:", name, price, count, productId,shippingCost,imageUrl,sellerId,sellerCountry);
 
-        var item = new Item(name, price, count, productId,shippingCost,imageUrl,sellerId);
+        var item = new Item(name, price, count, productId,shippingCost,imageUrl,sellerId,sellerCountry);
         cart.push(item);
         saveCart();
 

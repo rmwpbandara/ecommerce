@@ -8,7 +8,9 @@
 
     @if(count($stocks)>0)
         @foreach($stocks as $stock)
-            @include('elements.element')
+            @if($stock->user_id!=$authId)
+                @include('elements.element')
+            @endif
         @endforeach
     @else
         @include('elements.no_results')

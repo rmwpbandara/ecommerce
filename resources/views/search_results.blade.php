@@ -6,12 +6,17 @@
     </script>
 
     @if(!empty($stocks))
+        @if(count($stocks)>0)
+            @foreach($stocks as $stock)
+                @if($stock->user_id!=$authId)
+                    @include('elements.element')
+                @endif
+            @endforeach
 
-        @foreach($stocks as $stock)
-            @include('elements.element')
-        @endforeach
-
-        @else
-        <h3>Enter tags or select types</h3>
+            @else
+                @include('elements.no_results')
+        @endif
+    @else
+        <h3 class="alert-danger">Enter tags or select types</h3>
     @endif
 @endsection

@@ -124,3 +124,13 @@ Route::post('/saveSubscribe',[
     'as'=>'subscribe'
 ]);
 
+Route::post('/checkout',[
+    'uses'=>'PaymentController@checkout',
+    'as'=>'checkout'
+]);
+
+Route::post('/shippingCost',[
+    'uses'=>'ProductController@saveShippingCost',
+    'as'=>'saveShippingCost'
+]);
+

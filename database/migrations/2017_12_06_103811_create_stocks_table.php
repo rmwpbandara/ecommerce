@@ -20,8 +20,6 @@ class CreateStocksTable extends Migration
             $table->string('quantity');
             $table->string('previousPrice')->nullable();
             $table->string('price');
-            $table->string('shippingLocal')->nullable();
-            $table->string('shippingInternational')->nullable();
             $table->string('image1Url')->nullable();
             $table->string('image2Url')->nullable();
 
